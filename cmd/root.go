@@ -14,7 +14,7 @@ var rootCmd = &cobra.Command{
 	Short: "Instl can install GitHub projects on your machine. No setup required.",
 	Long: `Instl is a CLI tool which detects the right release of a GitHub repository for your system.
 It will download the detected release and install the asset files to your computer.
-The repositories themself, don't need a setup to be installable with instl. They just need a default release with assets for multiple operating systems.'`,
+The repositories themself, don't need a setup to be installable with instl. They just need a default release with assets for multiple operating systems.`,
 	Version: "v0.0.1", // <---VERSION---> This comment enables auto-releases on version change!
 	// 	Run: func(cmd *cobra.Command, args []string) {   },
 }
