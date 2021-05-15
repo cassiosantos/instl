@@ -1,7 +1,7 @@
-# Quick Start - Install cli-template
+# Quick Start - Install instl
 
 > [!TIP]
-> cli-template is installable via [instl.sh](https://instl.sh).\
+> instl is installable via [instl.sh](https://instl.sh).\
 > You just have to run the following command and you're ready to go!
 
 <!-- tabs:start -->
@@ -35,10 +35,10 @@ curl -s https://instl.sh/instl-sh/instl/linux | sudo bash
 ### Compile from source with Golang
 
 ?> **NOTICE**
-To compile cli-template from source, you have to have [Go](https://golang.org/) installed.
+To compile instl from source, you have to have [Go](https://golang.org/) installed.
 
-Compiling cli-template from source has the benefit that the build command is the same on every platform.\
-It is not recommended to install Go only for the installation of cli-template.
+Compiling instl from source has the benefit that the build command is the same on every platform.\
+It is not recommended to install Go only for the installation of instl.
 
 ```command
 go install github.com/instl-sh/instl@latest
