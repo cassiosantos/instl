@@ -11,7 +11,7 @@
 ### Windows Command
 
 ```powershell
-iwr -useb instl.sh/pterm/cli-template/windows | iex
+iwr -useb instl.sh/instl-sh/instl/windows | iex
 ```
 
 #### ** Linux **
@@ -19,7 +19,7 @@ iwr -useb instl.sh/pterm/cli-template/windows | iex
 ### Linux Command
 
 ```bash
-curl -s https://instl.sh/pterm/cli-template/linux | sudo bash
+curl -s https://instl.sh/instl-sh/instl/linux | sudo bash
 ```
 
 #### ** macOS **
@@ -27,7 +27,7 @@ curl -s https://instl.sh/pterm/cli-template/linux | sudo bash
 ### macOS Command
 
 ```bash
-/bin/bash -c "$(curl -fsSL instl.sh/pterm/cli-template/macos)"
+/bin/bash -c "$(curl -fsSL instl.sh/instl-sh/instl/macos)"
 ```
 
 #### ** Compile from source **
@@ -41,7 +41,7 @@ Compiling cli-template from source has the benefit that the build command is the
 It is not recommended to install Go only for the installation of cli-template.
 
 ```command
-go install github.com/pterm/cli-template@latest
+go install github.com/instl-sh/instl@latest
 ```
 
 <!-- tabs:end -->

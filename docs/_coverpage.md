@@ -7,4 +7,4 @@ examples and usage of using your application.
 
 [Installation](installation.md)
 [Docs](docs.md)
-[GitHub](https://github.com/pterm/cli-template)
+[GitHub](https://github.com/instl-sh/instl)

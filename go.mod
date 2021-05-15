@@ -1,4 +1,4 @@
-module github.com/pterm/cli-template
+module github.com/instl-sh/instl
 
 go 1.16
 
