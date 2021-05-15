@@ -1,5 +1,5 @@
-<h1 align="center">cli-template</h1>
-<p align="center">A brief description of your application</p>
+<h1 align="center">instl</h1>
+<p align="center">Instl can install GitHub projects on your machine. No setup required.</p>
 
 <p align="center">
 
@@ -45,8 +45,9 @@
 
 ----
 
-A longer description that spans multiple lines and likely contains
-examples and usage of using your application.
+Instl is a CLI tool which detects the right release of a GitHub repository for your system.
+It will download the detected release and install the asset files to your computer.
+The repositories themself, don't need a setup to be installable with instl. They just need a default release with assets for multiple operating systems.'
 
 ## Installation
 

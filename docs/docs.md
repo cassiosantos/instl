@@ -1,15 +1,16 @@
-# cli-template
+# instl
 
 ## Usage
-> A brief description of your application
+> Instl can install GitHub projects on your machine. No setup required.
 
-cli-template [global options] command [options] [arguments...]
+instl [global options] command [options] [arguments...]
 
 ## Description
 
 ```
-A longer description that spans multiple lines and likely contains
-examples and usage of using your application.
+Instl is a CLI tool which detects the right release of a GitHub repository for your system.
+It will download the detected release and install the asset files to your computer.
+The repositories themself, don't need a setup to be installable with instl. They just need a default release with assets for multiple operating systems.'
 ```
 
 ## Flags
@@ -21,67 +22,20 @@ examples and usage of using your application.
 ## Commands
 |Command|Usage|
 |-------|-----|
-|`cli-template hello`|A brief description of your command|
-|`cli-template help`|Help about any command|
-# ... hello
-`cli-template hello`
-
-## Usage
-> A brief description of your command
-
-cli-template [global options] command [options] [arguments...]
-
-## Description
-
-```
-A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.
-```
-
-## Flags
-|Flag|Usage|
-|----|-----|
-|`-n, --name string`|Your name|
-
-## Commands
-|Command|Usage|
-|-------|-----|
-|`cli-template hello test`|A brief description of your command|
-# ... hello test
-`cli-template hello test`
-
-## Usage
-> A brief description of your command
-
-cli-template [global options] command [options] [arguments...]
-
-## Description
-
-```
-A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.
-```
+|`instl help`|Help about any command|
 # ... help
-`cli-template help`
+`instl help`
 
 ## Usage
 > Help about any command
 
-cli-template [global options] command [options] [arguments...]
+instl [global options] command [options] [arguments...]
 
 ## Description
 
 ```
 Help provides help for any command in the application.
-Simply type cli-template help [path to command] for full details.
+Simply type instl help [path to command] for full details.
 ```
 
 
