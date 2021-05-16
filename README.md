@@ -7,6 +7,10 @@
 <img src="https://img.shields.io/github/v/release/instl-sh/instl?style=flat-square" alt="Latest Release">
 </a>
 
+<a href="https://github.com/instl-sh/instl/releases">
+<img src="https://img.shields.io/github/downloads/instl-sh/instl/total.svg?style=flat-square" alt="Downloads">
+</a>
+
 <a href="https://github.com/instl-sh/instl/stargazers">
 <img src="https://img.shields.io/github/stars/instl-sh/instl.svg?style=flat-square" alt="Stars">
 </a>
