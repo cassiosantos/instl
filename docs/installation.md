@@ -19,7 +19,7 @@ iwr -useb instl.sh/instl-sh/instl/windows | iex
 ### Linux Command
 
 ```bash
-curl -s https://instl.sh/instl-sh/instl/linux | sudo bash
+curl -fsSL instl.sh/instl-sh/instl/linux | sudo bash
 ```
 
 #### ** macOS **

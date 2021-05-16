@@ -60,7 +60,7 @@ iwr -useb instl.sh/username/reponame/windows | iex
 /bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
   
 **Linux**  
-curl -s https://instl.sh/username/reponame/linux | sudo bash  
+curl -fsSL instl.sh/username/reponame/linux | sudo bash  
   
 (Replace username and reponame with the GitHub project you want to install)  
   
@@ -83,5 +83,5 @@ iwr -useb instl.sh/instl-sh/instl/windows | iex
 
 **Linux**
 ```bash
-curl -s https://instl.sh/instl-sh/instl/linux | sudo bash
+curl -fsSL instl.sh/instl-sh/instl/linux | sudo bash
 ```
