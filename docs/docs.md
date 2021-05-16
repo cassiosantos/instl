@@ -3,7 +3,7 @@
 ## Usage
 > Instl can install GitHub projects on your machine. No setup required.
 
-instl [global options] command [options] [arguments...]
+instl [repo] [global options] command [options] [arguments...]
 
 ## Description
 
@@ -29,7 +29,7 @@ The repositories themself, don't need a setup to be installable with instl. They
 ## Usage
 > Help about any command
 
-instl [global options] command [options] [arguments...]
+instl [repo] [global options] command [options] [arguments...]
 
 ## Description
 
@@ -40,4 +40,4 @@ Simply type instl help [path to command] for full details.
 
 
 ---
-> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 15 May 2021**
+> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 16 May 2021**
