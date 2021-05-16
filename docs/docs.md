@@ -1,16 +1,30 @@
 # instl
 
 ## Usage
-> Instl can install GitHub projects on your machine. No setup required.
+> Instl is an installer that installs GitHub projects on your system with a single command.
 
 instl [repo] [global options] command [options] [arguments...]
 
 ## Description
 
 ```
-Instl is a CLI tool which detects the right release of a GitHub repository for your system.
-It will download the detected release and install the asset files to your computer.
-The repositories themself, don't need a setup to be installable with instl. They just need a default release with assets for multiple operating systems.
+Instl is an installer that installs GitHub projects on your system with a single command.  
+Additionally, Instl provides a server that generates dynamic scripts that install a GitHub project.  
+To use the server you can use the following commands:
+  
+**Windows**  
+iwr -useb instl.sh/username/reponame/windows | iex  
+  
+**macOS**  
+/bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
+  
+**Linux**  
+curl -s https://instl.sh/username/reponame/linux | sudo bash  
+  
+(Replace username and reponame with the GitHub project you want to install)  
+  
+These commands can be executed from any system and install the respective GitHub project.  
+You can also provide these commands to your users to make your GitHub project easily installable.
 ```
 
 ## Flags

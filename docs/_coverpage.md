@@ -1,6 +1,6 @@
 # instl
 
-> Instl can install GitHub projects on your machine. No setup required.
+> Instl is an installer that installs GitHub projects on your system with a single command.
 
 [Installation](installation.md)
 [Docs](docs.md)
