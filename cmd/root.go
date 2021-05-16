@@ -35,7 +35,7 @@ curl -fsSL instl.sh/username/reponame/linux | sudo bash
   
 These commands can be executed from any system and install the respective GitHub project.  
 You can also provide these commands to your users to make your GitHub project easily installable.`,
-	Version: "v0.0.3", // <---VERSION---> This comment enables auto-releases on version change!
+	Version: "v0.0.4", // <---VERSION---> This comment enables auto-releases on version change!
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
 			return errors.New("you must provide a GitHub repo to install\nExample: instl user/repo")
