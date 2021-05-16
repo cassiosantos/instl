@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"errors"
-	"fmt"
 	"os"
 	"runtime"
 	"strings"
@@ -30,7 +29,7 @@ iwr -useb instl.sh/username/reponame/windows | iex
 /bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
   
 **Linux**  
-curl -s https://instl.sh/username/reponame/linux | sudo bash  
+curl -fsSL instl.sh/username/reponame/linux | sudo bash  
   
 (Replace username and reponame with the GitHub project you want to install)  
   
@@ -39,7 +38,7 @@ You can also provide these commands to your users to make your GitHub project ea
 	Version: "v0.0.3", // <---VERSION---> This comment enables auto-releases on version change!
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
-			return errors.New("you must provide a GitHub repo to install")
+			return errors.New("you must provide a GitHub repo to install\nExample: instl user/repo")
 		}
 		return nil
 	},
@@ -105,7 +104,6 @@ You can also provide these commands to your users to make your GitHub project ea
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
 		os.Exit(1)
 	}
 }
@@ -118,14 +116,7 @@ func init() {
 
 	// Use https://github.com/pterm/pcli to style the output of cobra.
 	pcli.SetRootCmd(rootCmd)
-	rootCmd.AddCommand(pcli.GetCiCommand())
-	rootCmd.SetFlagErrorFunc(pcli.FlagErrorFunc())
-	rootCmd.SetGlobalNormalizationFunc(pcli.GlobalNormalizationFunc())
-	rootCmd.SetHelpFunc(pcli.HelpFunc())
-	rootCmd.SetHelpTemplate(pcli.HelpTemplate())
-	rootCmd.SetUsageFunc(pcli.UsageFunc())
-	rootCmd.SetUsageTemplate(pcli.UsageTemplate())
-	rootCmd.SetVersionTemplate(pcli.VersionTemplate())
+	pcli.Setup()
 
 	// Change global PTerm theme
 	pterm.ThemeDefault.SectionStyle = *pterm.NewStyle(pterm.FgCyan)
