@@ -24,7 +24,7 @@ It will download the detected release and install the asset files to your comput
 The repositories themself, don't need a setup to be installable with instl. They just need a default release with assets for multiple operating systems.`,
 	Example: `instl instl-sh/instl
 instl yourName/yourRepo`,
-	Version: "v0.0.1", // <---VERSION---> This comment enables auto-releases on version change!
+	Version: "v0.0.2", // <---VERSION---> This comment enables auto-releases on version change!
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
 			return errors.New("you must provide a GitHub repo to install")
