@@ -5,7 +5,6 @@ import (
 	"os"
 	"runtime"
 	"strings"
-	"time"
 
 	"github.com/atomicgo/isadmin"
 	"github.com/mholt/archiver/v3"
@@ -82,26 +81,23 @@ You can also provide these commands to your users to make your GitHub project ea
 			return pterm.Sprintf("Found an asset which seems to fit to your system:")
 		})
 		assetStats, _ := pterm.DefaultTable.WithHasHeader().WithData(pterm.TableData{
-			{"Name", "Last Update", "Download Count"},
-			{release.Name, release.UpdatedAt.Format(time.RFC1123), pterm.Sprint(release.DownloadCount)},
+			{"Name", "Version", "Last Update", "Size"},
+			{release.Name, pterm.Sprint(release.Version), release.UpdatedAt.Format("02 Jan 2006"), internal.ReadbleSize(release.Size)},
 		}).Srender()
 		pterm.DefaultBox.Println(assetStats)
 		installPath := internal.GetInstallPath(repo.User, repo.Name) + "/" + release.Name
 		installDir := internal.GetInstallPath(repo.User, repo.Name)
-		os.RemoveAll(installDir)
-		os.MkdirAll(installDir, 0755)
+		pterm.Debug.PrintOnError(os.RemoveAll(installDir))
+		pterm.Warning.PrintOnError(os.MkdirAll(installDir, 0755))
 		err := internal.DownloadFile(installPath, release.DownloadURL)
 		if err != nil {
 			pterm.Fatal.Println(err)
 		}
 		pterm.Success.Printf("Downloaded %s\n", release.Name)
 
-		err = archiver.Unarchive(installPath, installDir)
-		if err != nil {
-			pterm.Fatal.Println(err)
-		}
+		pterm.Fatal.PrintOnError(archiver.Unarchive(installPath, installDir))
 
-		os.Remove(installPath)
+		pterm.Warning.PrintOnError(os.Remove(installPath))
 		internal.AddToPath(installDir, repo.Name)
 
 		pterm.Success.Printfln("%s was installed successfully!\nYou might have to restart your terminal session to use %s", repo.Name, repo.Name)
@@ -119,7 +115,7 @@ func Execute() {
 func init() {
 	// Adds global flags for PTerm settings.
 	// Fill the empry strings with the shorthand variant (if you like to have one).
-	rootCmd.PersistentFlags().BoolVarP(&pterm.PrintDebugMessages, "debug", "", false, "enable debug messages")
+	rootCmd.PersistentFlags().BoolVarP(&pterm.PrintDebugMessages, "debug", "d", false, "enable debug messages")
 	rootCmd.PersistentFlags().BoolVarP(&pterm.RawOutput, "raw", "", false, "print unstyled raw output (set it if output is written to a file)")
 
 	// Use https://github.com/pterm/pcli to style the output of cobra.

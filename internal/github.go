@@ -26,6 +26,7 @@ type Release struct {
 	DownloadCount int64
 	UpdatedAt     time.Time
 	DownloadURL   string
+	Version       string
 }
 
 // ParseRepository parses a repository from a string.
@@ -67,11 +68,11 @@ func (repo Repository) ForEachRelease(f func(release Release)) {
 			DownloadCount: value.Get("download_count").Int(),
 			UpdatedAt:     value.Get("updated_at").Time(),
 			DownloadURL:   value.Get("browser_download_url").String(),
+			Version:       strings.Split(value.Get("browser_download_url").String(), "/")[7],
 		}
 
 		f(release)
 
 		return true
 	})
-
 }
