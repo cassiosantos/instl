@@ -101,7 +101,7 @@ func DetectRightRelease(repo Repository) Release {
 	case "linux":
 		return findBestRelease(analyizeMultiReleases(&linuxReleases))
 	case "darwin":
-		return findBestRelease(analyizeMultiReleases(&windowsReleases))
+		return findBestRelease(analyizeMultiReleases(&darwinReleases))
 	}
 
 	return Release{}
