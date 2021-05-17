@@ -57,7 +57,7 @@ To use the server you can use the following commands:
 iwr -useb instl.sh/username/reponame/windows | iex  
   
 **macOS**  
-/bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
+sudo /bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
   
 **Linux**  
 curl -fsSL instl.sh/username/reponame/linux | sudo bash  
