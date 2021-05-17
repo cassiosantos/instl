@@ -30,7 +30,7 @@ You can also provide these commands to your users to make your GitHub project ea
 ## Flags
 |Flag|Usage|
 |----|-----|
-|`--debug`|enable debug messages|
+|`-d, --debug`|enable debug messages|
 |`--raw`|print unstyled raw output (set it if output is written to a file)|
 
 ## Commands
