@@ -3,7 +3,7 @@
 ## Usage
 > Instl is an installer that installs GitHub projects on your system with a single command.
 
-instl [repo] [global options] command [options] [arguments...]
+instl [username/repo] [global options] command [options] [arguments...]
 
 ## Description
 
@@ -43,7 +43,7 @@ You can also provide these commands to your users to make your GitHub project ea
 ## Usage
 > Help about any command
 
-instl [repo] [global options] command [options] [arguments...]
+instl [username/repo] [global options] command [options] [arguments...]
 
 ## Description
 
