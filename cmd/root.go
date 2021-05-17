@@ -26,7 +26,7 @@ To use the server you can use the following commands:
 iwr -useb instl.sh/username/reponame/windows | iex  
   
 **macOS**  
-/bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
+sudo /bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
   
 **Linux**  
 curl -fsSL instl.sh/username/reponame/linux | sudo bash  
@@ -41,6 +41,7 @@ You can also provide these commands to your users to make your GitHub project ea
 		if len(args) < 1 {
 			return errors.New("you must provide a GitHub repo to install\nExample: instl user/repo")
 		}
+
 		return nil
 	},
 	PreRunE: func(cmd *cobra.Command, args []string) error {
@@ -58,7 +59,8 @@ You can also provide these commands to your users to make your GitHub project ea
 		introText, _ := pterm.DefaultBigText.WithLetters(pterm.NewLettersFromStringWithStyle("  INSTL", pterm.NewStyle(pterm.FgMagenta))).Srender()
 		pterm.Println()
 		pterm.Println(strings.TrimRight(introText, "\n"))
-		pterm.Printf(pterm.Cyan("                > https://instl.sh\n\n"))
+		pterm.Printf(pterm.Cyan("                > https://instl.sh\n"))
+		pterm.Printf(pterm.Cyan("                       %s\n\n"), cmd.Version)
 		pterm.Info.Printf("instl.sh is an automated installer for GitHub projects.\nWe do not own https://github.com/%s.\n", pterm.Magenta(repoName))
 		pterm.Println()
 		pterm.DefaultHeader.Printf("Running installer for github.com/%s", repoName)
