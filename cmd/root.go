@@ -43,7 +43,7 @@ You can also provide these commands to your users to make your GitHub project ea
 		}
 		return nil
 	},
-	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if !isadmin.Check() {
 			return errors.New("instl must be started with administrative privileges")
 		}
