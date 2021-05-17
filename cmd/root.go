@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/atomicgo/isadmin"
 	"github.com/mholt/archiver/v3"
 	"github.com/pterm/pcli"
 	"github.com/pterm/pterm"
@@ -40,6 +41,13 @@ You can also provide these commands to your users to make your GitHub project ea
 		if len(args) < 1 {
 			return errors.New("you must provide a GitHub repo to install\nExample: instl user/repo")
 		}
+		return nil
+	},
+	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+		if !isadmin.Check() {
+			return errors.New("instl must be started with administrative privileges")
+		}
+
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
