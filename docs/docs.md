@@ -26,6 +26,11 @@ curl -fsSL instl.sh/username/reponame/linux | sudo bash
 These commands can be executed from any system and install the respective GitHub project.  
 You can also provide these commands to your users to make your GitHub project easily installable.
 ```
+## Examples
+
+```bash
+instl instl-sh/instl
+```
 
 ## Flags
 |Flag|Usage|
