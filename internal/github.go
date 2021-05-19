@@ -27,6 +27,7 @@ type Release struct {
 	UpdatedAt     time.Time
 	DownloadURL   string
 	Version       string
+	Score         int
 }
 
 // ParseRepository parses a repository from a string.

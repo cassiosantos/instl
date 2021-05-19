@@ -112,22 +112,24 @@ func generateMultiRegex(parts ...string) *regexp.Regexp {
 	return regexp.MustCompile(`(?mi)` + strings.Join(parts, "|"))
 }
 
-func findBestRelease(m map[Release]int) (r Release) {
+func findBestRelease(m map[*Release]int) (r Release) {
 	var highest int
 	for release, i := range m {
 		if i > highest {
-			r = release
+			r = *release
 		}
 	}
+
+	r.Score = m[&r]
 
 	return
 }
 
-func analyizeMultiReleases(releases *[]Release) map[Release]int {
-	counted := map[Release]int{}
+func analyizeMultiReleases(releases *[]Release) map[*Release]int {
+	counted := map[*Release]int{}
 	for _, release := range *releases {
 		re := generateGoarchRegex()
-		counted[release] = len(re.FindAllString(release.Name, -1))
+		counted[&release] = len(re.FindAllString(release.Name, -1))
 	}
 	return counted
 }
