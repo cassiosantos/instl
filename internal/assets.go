@@ -117,10 +117,9 @@ func findBestRelease(m map[*Release]int) (r Release) {
 	for release, i := range m {
 		if i > highest {
 			r = *release
+			r.Score = i
 		}
 	}
-
-	r.Score = m[&r]
 
 	return
 }

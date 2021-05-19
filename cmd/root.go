@@ -86,10 +86,18 @@ You can also provide these commands to your users to make your GitHub project ea
 			release = internal.DetectRightRelease(repo)
 			return pterm.Sprintf("Found an asset which seems to fit to your system:")
 		})
-		assetStats, _ := pterm.DefaultTable.WithHasHeader().WithData(pterm.TableData{
+
+		assetData := pterm.TableData{
 			{"Name", "Version", "Last Update", "Size"},
 			{release.Name, pterm.Sprint(release.Version), release.UpdatedAt.Format("02 Jan 2006"), internal.ReadbleSize(release.Size)},
-		}).Srender()
+		}
+
+		if pterm.PrintDebugMessages {
+			assetData[0] = append(assetData[0], "Score")
+			assetData[1] = append(assetData[1], pterm.Sprint(release.Score))
+		}
+
+		assetStats, _ := pterm.DefaultTable.WithHasHeader().WithData(assetData).Srender()
 		pterm.DefaultBox.Println(assetStats)
 		installPath := internal.GetInstallPath(repo.User, repo.Name) + "/" + release.Name
 		installDir := internal.GetInstallPath(repo.User, repo.Name)
