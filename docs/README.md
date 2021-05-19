@@ -54,13 +54,16 @@ Additionally, Instl provides a server that generates dynamic scripts that instal
 To use the server you can use the following commands:
   
 **Windows**  
-iwr -useb instl.sh/username/reponame/windows | iex  
+
+    iwr -useb instl.sh/username/reponame/windows | iex  
   
 **macOS**  
-sudo /bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
+
+    sudo /bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
   
 **Linux**  
-curl -fsSL instl.sh/username/reponame/linux | sudo bash  
+
+    curl -fsSL instl.sh/username/reponame/linux | sudo bash  
   
 (Replace username and reponame with the GitHub project you want to install)  
   
