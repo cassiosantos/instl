@@ -42,13 +42,13 @@ func DownloadFile(output, url string) error {
 
 	counter := &WriteCounter{}
 	fileSize, _ := strconv.Atoi(resp.Header.Get("Content-Length"))
-	counter.pb, _ = pterm.DefaultProgressbar.WithTitle("Downloading asset").WithTotal(fileSize).Start()
+	counter.pb, _ = pterm.DefaultProgressbar.WithRemoveWhenDone().WithTitle("Downloading asset").WithTotal(fileSize).Start()
 	if _, err = io.Copy(out, io.TeeReader(resp.Body, counter)); err != nil {
 		out.Close()
 		return err
 	}
 
-	os.Chmod(path, 0755)
+	pterm.Debug.PrintOnError(os.Chmod(path, 0755))
 
 	out.Close()
 	return nil
