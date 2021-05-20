@@ -51,7 +51,7 @@ func ParseRepository(repo string) (Repository, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode == 404 {
-		return Repository{}, fmt.Errorf("could not find a GitHub repository at %s: %s", repo, resp.Status)
+		return Repository{}, fmt.Errorf("could not find a GitHub repository at https://github.com/%s: %s", repo, resp.Status)
 	}
 
 	jsonBytes, err := ioutil.ReadAll(resp.Body)
