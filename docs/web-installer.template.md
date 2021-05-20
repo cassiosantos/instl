@@ -9,9 +9,9 @@ The instl web installer is a single command, which everyone can run, to install 
 This is the basic syntax, which will return an install script from our API server:
 
 ```
-                     ┌-- The GitHub username of the project
-                     |          ┌-- The GitHub repository name of the project
-                     |          |         ┌-- The platform, see "Valid Platforms"
+                     ┌ The GitHub username of the project
+                     |          ┌ The GitHub repository name of the project
+                     |          |         ┌ The platform, see "Valid Platforms"
                      |          |         |
 https://instl.sh/:username/:reponame/:platform
 ```
