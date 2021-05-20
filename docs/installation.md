@@ -19,7 +19,7 @@ iwr -useb instl.sh/instl-sh/instl/windows | iex
 ### Linux Command
 
 ```bash
-curl -fsSL instl.sh/instl-sh/instl/linux | sudo bash
+curl -fsSL instl.sh/instl-sh/instl/linux | bash
 ```
 
 #### ** macOS **
@@ -27,7 +27,7 @@ curl -fsSL instl.sh/instl-sh/instl/linux | sudo bash
 ### macOS Command
 
 ```bash
-/bin/bash -c "$(curl -fsSL instl.sh/instl-sh/instl/macos)"
+curl -fsSL instl.sh/instl-sh/instl/macos | bash "
 ```
 
 #### ** Compile from source **
