@@ -62,11 +62,11 @@ To use the server you can use the following commands:
   
 **macOS**  
 
-    sudo /bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
+    /bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
   
 **Linux**  
 
-    curl -fsSL instl.sh/username/reponame/linux | sudo bash  
+    curl -fsSL instl.sh/username/reponame/linux | bash  
   
 (Replace username and reponame with the GitHub project you want to install)  
 
