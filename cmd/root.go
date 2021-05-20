@@ -83,7 +83,7 @@ You can also provide these commands to your users to make your GitHub project ea
 		var release internal.Release
 		internal.MakeSpinner("Detecting right asset for machine...", func() string {
 			pterm.Debug.Println("Your system:", runtime.GOOS, runtime.GOARCH)
-			release = internal.DetectRightRelease(repo)
+			release = internal.DetectRightAsset(repo)
 			return pterm.Sprintf("Found an asset which seems to fit to your system:")
 		})
 

@@ -59,8 +59,8 @@ var validGooses = []string{
 	"zos",
 }
 
-// DetectRightRelease tries to detect the right asset for the current machine.
-func DetectRightRelease(repo Repository) Release {
+// DetectRightAsset tries to detect the right asset for the current machine.
+func DetectRightAsset(repo Repository) Release {
 	goos := runtime.GOOS
 
 	var (
