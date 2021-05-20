@@ -64,9 +64,9 @@ func DetectRightAsset(repo Repository) Release {
 	goos := runtime.GOOS
 
 	var (
-		windowsReleases []Release
-		linuxReleases   []Release
-		darwinReleases  []Release
+		windowsAssets []Release
+		linuxAssets   []Release
+		darwinAssets  []Release
 	)
 
 	windowsRegex := generateMultiRegex("windows", `\.exe$`)
@@ -88,21 +88,21 @@ func DetectRightAsset(repo Repository) Release {
 
 		switch {
 		case goos == "windows" && windowsRegex.MatchString(name):
-			windowsReleases = append(windowsReleases, release)
+			windowsAssets = append(windowsAssets, release)
 		case goos == "linux" && linuxRegex.MatchString(name):
-			linuxReleases = append(linuxReleases, release)
+			linuxAssets = append(linuxAssets, release)
 		case goos == "darwin" && darwinRegex.MatchString(name):
-			darwinReleases = append(darwinReleases, release)
+			darwinAssets = append(darwinAssets, release)
 		}
 	})
 
 	switch goos {
 	case "windows":
-		return findBestRelease(analyzeMultiReleases(&windowsReleases))
+		return findBestRelease(analyzeMultiReleases(&windowsAssets))
 	case "linux":
-		return findBestRelease(analyzeMultiReleases(&linuxReleases))
+		return findBestRelease(analyzeMultiReleases(&linuxAssets))
 	case "darwin":
-		return findBestRelease(analyzeMultiReleases(&darwinReleases))
+		return findBestRelease(analyzeMultiReleases(&darwinAssets))
 	}
 
 	return Release{}
