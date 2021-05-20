@@ -20,6 +20,9 @@ var rootCmd = &cobra.Command{
 	Short: "Instl is an installer that installs GitHub projects on your system with a single command.",
 	Long: `Instl is an installer that installs GitHub projects on your system with a single command.  
 Additionally, Instl provides a server that generates dynamic scripts that install a GitHub project.  
+
+Official docs: https://docs.instl.sh
+
 To use the server you can use the following commands:
   
 **Windows**  
