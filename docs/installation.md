@@ -27,7 +27,7 @@ curl -fsSL instl.sh/instl-sh/instl/linux | bash
 ### macOS Command
 
 ```bash
-curl -fsSL instl.sh/instl-sh/instl/macos | bash "
+curl -fsSL instl.sh/instl-sh/instl/macos | bash
 ```
 
 #### ** Compile from source **

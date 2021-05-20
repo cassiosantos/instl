@@ -86,7 +86,7 @@ iwr -useb instl.sh/instl-sh/instl/windows | iex
 
 **macOS**
 ```bash
-curl -fsSL instl.sh/instl-sh/instl/macos | bash "
+curl -fsSL instl.sh/instl-sh/instl/macos | bash
 ```
 
 **Linux**
