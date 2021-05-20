@@ -100,21 +100,22 @@ You can also provide these commands to your users to make your GitHub project ea
 		assetStats, _ := pterm.DefaultTable.WithHasHeader().WithData(assetData).Srender()
 		pterm.DefaultBox.Println(assetStats)
 
+		// Making installation ready.
 		installPath := internal.GetInstallPath(repo.User, repo.Name) + "/" + asset.Name
 		installDir := internal.GetInstallPath(repo.User, repo.Name)
 		pterm.Debug.PrintOnError(os.RemoveAll(installDir))
 		pterm.Warning.PrintOnError(os.MkdirAll(installDir, 0755))
-		err := internal.DownloadFile(installPath, asset.DownloadURL)
-		if err != nil {
-			pterm.Fatal.Println(err)
-		}
+
+		// Downloading asset.
+		pterm.Fatal.PrintOnError(internal.DownloadFile(installPath, asset.DownloadURL))
 		pterm.Success.Printf("Downloaded %s\n", asset.Name)
 
+		// Installing asset.
 		pterm.Fatal.PrintOnError(archiver.Unarchive(installPath, installDir))
-
 		pterm.Warning.PrintOnError(os.Remove(installPath))
 		internal.AddToPath(installDir, repo.Name)
 
+		// Success message.
 		pterm.Success.Printfln("%s was installed successfully!\nYou might have to restart your terminal session to use %s", repo.Name, repo.Name)
 	},
 }
