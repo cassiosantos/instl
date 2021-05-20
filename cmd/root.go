@@ -78,23 +78,33 @@ You can also provide these commands to your users to make your GitHub project ea
 
 		// Request latest GitHub asset and it's assets.
 		var repo internal.Repository
-		internal.MakeSpinner("Getting asset metadata from latest release...", func() string {
-			repo = internal.ParseRepository(repoArg)
+		err := internal.MakeSpinner("Getting asset metadata from latest release...", func() (string, error) {
+			repoTmp, err := internal.ParseRepository(repoArg)
+			repo = repoTmp
+			if err != nil {
+				return "", err
+			}
 			var assetCount int
 			repo.ForEachAsset(func(release internal.Asset) {
 				assetCount++
 			})
 
-			return pterm.Sprintf("Found %d assets in latest asset!", assetCount)
+			return pterm.Sprintf("Found %d assets in latest release!", assetCount), nil
 		})
+		if err != nil {
+			return err
+		}
 
 		// Detect right asset for system.
 		var asset internal.Asset
-		internal.MakeSpinner("Detecting right asset for machine...", func() string {
+		err = internal.MakeSpinner("Detecting right asset for machine...", func() (string, error) {
 			pterm.Debug.Println("Your system:", runtime.GOOS, runtime.GOARCH)
 			asset = internal.DetectRightAsset(repo)
-			return pterm.Sprintf("Found an asset which seems to fit to your system:")
+			return pterm.Sprintf("Found an asset which seems to fit to your system:"), nil
 		})
+		if err != nil {
+			return err
+		}
 
 		// Print asset stats.
 		assetData := pterm.TableData{

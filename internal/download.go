@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -30,13 +31,13 @@ func DownloadFile(output, url string) error {
 	pterm.Debug.Printf("Downloading to %s\n", path)
 	out, err := os.Create(path)
 	if err != nil {
-		return err
+		return fmt.Errorf("could not create download path: %w", err)
 	}
 
 	resp, err := http.Get(url)
 	if err != nil {
 		out.Close()
-		return err
+		return fmt.Errorf("error while downloading file: %w", err)
 	}
 	defer resp.Body.Close()
 

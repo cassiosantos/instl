@@ -32,7 +32,7 @@ type Asset struct {
 }
 
 // ParseRepository parses a repository from a string.
-func ParseRepository(repo string) Repository {
+func ParseRepository(repo string) (Repository, error) {
 	// Parse "https://github.com/name/repo", "github.com/name/repoStr", etc. to "name/repoStr"
 	repoParts := strings.Split(repo, "/")
 	repo = repoParts[len(repoParts)-2] + "/" + repoParts[len(repoParts)-1]
@@ -50,6 +50,10 @@ func ParseRepository(repo string) Repository {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode == 404 {
+		return Repository{}, fmt.Errorf("could not find a GitHub repository at %s: %s", repo, resp.Status)
+	}
+
 	jsonBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		pterm.Fatal.Println(fmt.Errorf("could not get github releases json: %w", err))
@@ -58,7 +62,7 @@ func ParseRepository(repo string) Repository {
 
 	r.Releases = gjson.Get(json, "assets.#.{name,size,download_count,updated_at,browser_download_url}")
 
-	return r
+	return r, nil
 }
 
 // ForEachAsset iterates over every asset in a release.
