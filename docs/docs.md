@@ -21,7 +21,7 @@ To use the server you can use the following commands:
   
 **macOS**  
 
-    /bin/bash -c "$(curl -fsSL instl.sh/username/reponame/macos)"  
+    curl -fsSL instl.sh/username/reponame/macos | bash   
   
 **Linux**  
 
