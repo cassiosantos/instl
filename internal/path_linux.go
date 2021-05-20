@@ -18,7 +18,12 @@ func GetInstallPath(username, programName string) string {
 
 // AddToPath adds a value to the global system path environment variable.
 func AddToPath(path, filename string) {
-	err := os.Symlink(path+"/"+filename, "/usr/local/bin/"+filepath.Base(path))
+	path, binaryName, err := FindBinary(path)
+	pterm.Debug.PrintOnError(err)
+
+	pterm.Debug.Printfln("Path: %s, Binary: %s", path, binaryName)
+
+	err = os.Symlink(path+"/"+binaryName, "/usr/local/bin/"+binaryName)
 	if err != nil {
 		pterm.Debug.Println("Symlink already exists. This is not a problem, the old one will work too.")
 	}
