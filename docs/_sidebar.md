@@ -1,5 +1,6 @@
 - [Installation](installation.md)
 - [Docs](docs.md)
+- [Web Installer](web-installer.md)
 
 ---
 
