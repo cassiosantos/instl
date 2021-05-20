@@ -35,6 +35,8 @@ To use the server you can use the following commands:
     curl -fsSL instl.sh/username/reponame/linux | sudo bash  
   
 (Replace username and reponame with the GitHub project you want to install)  
+
+Read more about the web installer here: https://docs.instl.sh/#/web-installer
   
 These commands can be executed from any system and install the respective GitHub project.  
 You can also provide these commands to your users to make your GitHub project easily installable.`,
