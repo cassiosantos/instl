@@ -98,11 +98,11 @@ func DetectRightRelease(repo Repository) Release {
 
 	switch goos {
 	case "windows":
-		return findBestRelease(analyizeMultiReleases(&windowsReleases))
+		return findBestRelease(analyzeMultiReleases(&windowsReleases))
 	case "linux":
-		return findBestRelease(analyizeMultiReleases(&linuxReleases))
+		return findBestRelease(analyzeMultiReleases(&linuxReleases))
 	case "darwin":
-		return findBestRelease(analyizeMultiReleases(&darwinReleases))
+		return findBestRelease(analyzeMultiReleases(&darwinReleases))
 	}
 
 	return Release{}
@@ -124,7 +124,7 @@ func findBestRelease(m map[*Release]int) (r Release) {
 	return
 }
 
-func analyizeMultiReleases(releases *[]Release) map[*Release]int {
+func analyzeMultiReleases(releases *[]Release) map[*Release]int {
 	counted := map[*Release]int{}
 	for _, release := range *releases {
 		re := generateGoarchRegex()
