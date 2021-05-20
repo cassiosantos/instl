@@ -20,7 +20,8 @@ type Repository struct {
 	Releases    gjson.Result
 }
 
-type Release struct {
+// Asset is a representation of an asset in a GitHub release.
+type Asset struct {
 	Name          string
 	Size          int64
 	DownloadCount int64
@@ -61,9 +62,9 @@ func ParseRepository(repo string) Repository {
 }
 
 // ForEachAsset iterates over every asset in a release.
-func (repo Repository) ForEachAsset(f func(release Release)) {
+func (repo Repository) ForEachAsset(f func(release Asset)) {
 	repo.Releases.ForEach(func(key, value gjson.Result) bool {
-		release := Release{
+		release := Asset{
 			Name:          value.Get("name").String(),
 			Size:          value.Get("size").Int(),
 			DownloadCount: value.Get("download_count").Int(),

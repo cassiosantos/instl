@@ -60,20 +60,20 @@ var validGooses = []string{
 }
 
 // DetectRightAsset tries to detect the right asset for the current machine.
-func DetectRightAsset(repo Repository) Release {
+func DetectRightAsset(repo Repository) Asset {
 	goos := runtime.GOOS
 
 	var (
-		windowsAssets []Release
-		linuxAssets   []Release
-		darwinAssets  []Release
+		windowsAssets []Asset
+		linuxAssets   []Asset
+		darwinAssets  []Asset
 	)
 
 	windowsRegex := generateMultiRegex("windows", `\.exe$`)
 	linuxRegex := generateMultiRegex("linux")
 	darwinRegex := generateMultiRegex("darwin")
 
-	repo.ForEachAsset(func(release Release) {
+	repo.ForEachAsset(func(release Asset) {
 		name := release.Name
 
 		for _, v := range validGoarches {
@@ -105,14 +105,14 @@ func DetectRightAsset(repo Repository) Release {
 		return findBestRelease(analyzeMultiReleases(&darwinAssets))
 	}
 
-	return Release{}
+	return Asset{}
 }
 
 func generateMultiRegex(parts ...string) *regexp.Regexp {
 	return regexp.MustCompile(`(?mi)` + strings.Join(parts, "|"))
 }
 
-func findBestRelease(m map[*Release]int) (r Release) {
+func findBestRelease(m map[*Asset]int) (r Asset) {
 	var highest int
 	for release, i := range m {
 		if i > highest {
@@ -124,8 +124,8 @@ func findBestRelease(m map[*Release]int) (r Release) {
 	return
 }
 
-func analyzeMultiReleases(releases *[]Release) map[*Release]int {
-	counted := map[*Release]int{}
+func analyzeMultiReleases(releases *[]Asset) map[*Asset]int {
+	counted := map[*Asset]int{}
 	for _, release := range *releases {
 		re := generateGoarchRegex()
 		counted[&release] = len(re.FindAllString(release.Name, -1))

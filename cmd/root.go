@@ -68,46 +68,47 @@ You can also provide these commands to your users to make your GitHub project ea
 		pterm.DefaultHeader.Printf("Running installer for github.com/%s", repoName)
 		pterm.Println()
 
-		// Request latest GitHub release.
+		// Request latest GitHub asset and it's assets.
 		var repo internal.Repository
-		internal.MakeSpinner("Getting asset metadata from latest release...", func() string {
+		internal.MakeSpinner("Getting asset metadata from latest asset...", func() string {
 			repo = internal.ParseRepository(repoArg)
 			var assetCount int
-			repo.ForEachAsset(func(release internal.Release) {
+			repo.ForEachAsset(func(release internal.Asset) {
 				assetCount++
 			})
 
-			return pterm.Sprintf("Found %d assets in latest release!", assetCount)
+			return pterm.Sprintf("Found %d assets in latest asset!", assetCount)
 		})
 
-		var release internal.Release
+		// Detect right asset for system.
+		var asset internal.Asset
 		internal.MakeSpinner("Detecting right asset for machine...", func() string {
 			pterm.Debug.Println("Your system:", runtime.GOOS, runtime.GOARCH)
-			release = internal.DetectRightAsset(repo)
+			asset = internal.DetectRightAsset(repo)
 			return pterm.Sprintf("Found an asset which seems to fit to your system:")
 		})
 
+		// Print asset stats.
 		assetData := pterm.TableData{
 			{"Name", "Version", "Last Update", "Size"},
-			{release.Name, pterm.Sprint(release.Version), release.UpdatedAt.Format("02 Jan 2006"), internal.ReadbleSize(release.Size)},
+			{asset.Name, pterm.Sprint(asset.Version), asset.UpdatedAt.Format("02 Jan 2006"), internal.ReadbleSize(asset.Size)},
 		}
-
 		if pterm.PrintDebugMessages {
 			assetData[0] = append(assetData[0], "Score")
-			assetData[1] = append(assetData[1], pterm.Sprint(release.Score))
+			assetData[1] = append(assetData[1], pterm.Sprint(asset.Score))
 		}
-
 		assetStats, _ := pterm.DefaultTable.WithHasHeader().WithData(assetData).Srender()
 		pterm.DefaultBox.Println(assetStats)
-		installPath := internal.GetInstallPath(repo.User, repo.Name) + "/" + release.Name
+
+		installPath := internal.GetInstallPath(repo.User, repo.Name) + "/" + asset.Name
 		installDir := internal.GetInstallPath(repo.User, repo.Name)
 		pterm.Debug.PrintOnError(os.RemoveAll(installDir))
 		pterm.Warning.PrintOnError(os.MkdirAll(installDir, 0755))
-		err := internal.DownloadFile(installPath, release.DownloadURL)
+		err := internal.DownloadFile(installPath, asset.DownloadURL)
 		if err != nil {
 			pterm.Fatal.Println(err)
 		}
-		pterm.Success.Printf("Downloaded %s\n", release.Name)
+		pterm.Success.Printf("Downloaded %s\n", asset.Name)
 
 		pterm.Fatal.PrintOnError(archiver.Unarchive(installPath, installDir))
 
