@@ -1,6 +1,8 @@
 package internal
 
 import (
+	"errors"
+	"fmt"
 	"io/fs"
 	"path/filepath"
 	"runtime"
@@ -23,9 +25,11 @@ func MakeSpinner(msg string, f func() (string, error)) error {
 	return nil
 }
 
+// FindBinary tries to find a binary in the release asset.
 func FindBinary(path string) (binaryPath, binaryName string, err error) {
 	var dotExeFiles []string
 	var noExtFiles []string
+	var detectedFiles []string
 
 	blacklist := []string{"LICENSE", "LICENCE"}
 
@@ -42,6 +46,8 @@ func FindBinary(path string) (binaryPath, binaryName string, err error) {
 				return nil
 			}
 		}
+
+		detectedFiles = append(detectedFiles, currentPath)
 
 		if ext == ".exe" {
 			dotExeFiles = append(dotExeFiles, currentPath)
@@ -65,5 +71,11 @@ func FindBinary(path string) (binaryPath, binaryName string, err error) {
 		}
 	}
 
-	return
+	for i, file := range detectedFiles {
+		detectedFiles[i] = filepath.Clean(strings.Join(strings.Split(file, "instl")[1:], ""))
+	}
+
+	pterm.Error.Println("We could not find a binary file inside the release asset.")
+	CreateIssue(fmt.Sprintf("[Binary Detection] `%s/%s`", Repo.User, Repo.Name), fmt.Sprintf("Detected files: \n```go\n%#v\n```\n", detectedFiles))
+	return "", "", errors.New("could not find binary file in asset")
 }

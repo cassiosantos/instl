@@ -3,6 +3,7 @@ module github.com/instl-sh/instl
 go 1.16
 
 require (
+	github.com/AlecAivazis/survey/v2 v2.2.12 // indirect
 	github.com/mholt/archiver/v3 v3.5.0
 	github.com/pterm/pcli v0.3.16
 	github.com/pterm/pterm v0.12.17

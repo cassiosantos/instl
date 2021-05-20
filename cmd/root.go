@@ -77,15 +77,14 @@ You can also provide these commands to your users to make your GitHub project ea
 		pterm.Println()
 
 		// Request latest GitHub asset and it's assets.
-		var repo internal.Repository
 		err := internal.MakeSpinner("Getting asset metadata from latest release...", func() (string, error) {
 			repoTmp, err := internal.ParseRepository(repoArg)
-			repo = repoTmp
+			internal.Repo = repoTmp
 			if err != nil {
 				return "", err
 			}
 			var assetCount int
-			repo.ForEachAsset(func(release internal.Asset) {
+			internal.Repo.ForEachAsset(func(release internal.Asset) {
 				assetCount++
 			})
 
@@ -99,7 +98,7 @@ You can also provide these commands to your users to make your GitHub project ea
 		var asset internal.Asset
 		err = internal.MakeSpinner("Detecting right asset for machine...", func() (string, error) {
 			pterm.Debug.Println("Your system:", runtime.GOOS, runtime.GOARCH)
-			asset = internal.DetectRightAsset(repo)
+			asset = internal.DetectRightAsset(internal.Repo)
 			return pterm.Sprintf("Found an asset which seems to fit to your system:"), nil
 		})
 		if err != nil {
@@ -119,8 +118,8 @@ You can also provide these commands to your users to make your GitHub project ea
 		pterm.DefaultBox.Println(assetStats)
 
 		// Making installation ready.
-		installPath := internal.GetInstallPath(repo.User, repo.Name) + "/" + asset.Name
-		installDir := internal.GetInstallPath(repo.User, repo.Name)
+		installPath := internal.GetInstallPath(internal.Repo.User, internal.Repo.Name) + "/" + asset.Name
+		installDir := internal.GetInstallPath(internal.Repo.User, internal.Repo.Name)
 		pterm.Debug.PrintOnError(os.RemoveAll(installDir))
 		pterm.Warning.PrintOnError(os.MkdirAll(installDir, 0755))
 
@@ -131,10 +130,10 @@ You can also provide these commands to your users to make your GitHub project ea
 		// Installing asset.
 		pterm.Fatal.PrintOnError(archiver.Unarchive(installPath, installDir))
 		pterm.Warning.PrintOnError(os.Remove(installPath))
-		internal.AddToPath(installDir, repo.Name)
+		internal.AddToPath(installDir, internal.Repo.Name)
 
 		// Success message.
-		pterm.Success.Printfln("%s was installed successfully!\nYou might have to restart your terminal session to use %s.", repo.Name, repo.Name)
+		pterm.Success.Printfln("%s was installed successfully!\nYou might have to restart your terminal session to use %s.", internal.Repo.Name, internal.Repo.Name)
 
 		return nil
 	},
@@ -160,4 +159,5 @@ func init() {
 
 	// Change global PTerm theme
 	pterm.ThemeDefault.SectionStyle = *pterm.NewStyle(pterm.FgCyan)
+	pterm.Error = *pterm.Error.WithShowLineNumber(false)
 }

@@ -19,7 +19,10 @@ func GetInstallPath(username, programName string) string {
 // AddToPath adds a value to the global system path environment variable.
 func AddToPath(path, filename string) {
 	path, binaryName, err := FindBinary(path)
-	pterm.Debug.PrintOnError(err)
+	pterm.Error.WithShowLineNumber(false).PrintOnError(err)
+	if err != nil {
+		os.Exit(1)
+	}
 
 	pterm.Debug.Printfln("Path: %s, Binary: %s", path, binaryName)
 
