@@ -8,7 +8,7 @@ import (
 )
 
 func GetInstallPath(username, programName string) string {
-	basePath := pterm.Sprintf("/usr/local/instl/%s/%s", username, programName)
+	basePath := pterm.Sprintf("/usr/local/lib/instl/%s/%s", username, programName)
 	basePath = filepath.Clean(basePath)
 	os.MkdirAll(basePath, 0755)
 
