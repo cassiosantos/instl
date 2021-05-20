@@ -3,7 +3,6 @@ module github.com/instl-sh/instl
 go 1.16
 
 require (
-	github.com/atomicgo/isadmin v1.0.0
 	github.com/mholt/archiver/v3 v3.5.0
 	github.com/pterm/pcli v0.3.13
 	github.com/pterm/pterm v0.12.17
