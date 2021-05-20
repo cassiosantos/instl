@@ -6,7 +6,6 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/atomicgo/isadmin"
 	"github.com/mholt/archiver/v3"
 	"github.com/pterm/pcli"
 	"github.com/pterm/pterm"
@@ -43,18 +42,11 @@ Read more about the web installer here: https://docs.instl.sh/#/web-installer
   
 These commands can be executed from any system and install the respective GitHub project.  
 You can also provide these commands to your users to make your GitHub project easily installable.`,
-	Version: "v0.0.11", // <---VERSION---> This comment enables auto-releases on version change!
+	Version: "v0.0.12", // <---VERSION---> This comment enables auto-releases on version change!
 	Example: "instl instl-sh/instl",
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
 			return errors.New("you must provide a GitHub repo to install\nExample: instl user/repo")
-		}
-
-		return nil
-	},
-	PreRunE: func(cmd *cobra.Command, args []string) error {
-		if !isadmin.Check() {
-			return errors.New("instl must be started with administrative privileges")
 		}
 
 		return nil
