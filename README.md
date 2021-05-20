@@ -86,10 +86,10 @@ iwr -useb instl.sh/instl-sh/instl/windows | iex
 
 **macOS**
 ```bash
-/bin/bash -c "$(curl -fsSL instl.sh/instl-sh/instl/macos)"
+curl -fsSL instl.sh/instl-sh/instl/macos | bash "
 ```
 
 **Linux**
 ```bash
-curl -fsSL instl.sh/instl-sh/instl/linux | sudo bash
+curl -fsSL instl.sh/instl-sh/instl/linux | bash
 ```
