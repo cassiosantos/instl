@@ -73,7 +73,7 @@ func DetectRightRelease(repo Repository) Release {
 	linuxRegex := generateMultiRegex("linux")
 	darwinRegex := generateMultiRegex("darwin")
 
-	repo.ForEachRelease(func(release Release) {
+	repo.ForEachAsset(func(release Release) {
 		name := release.Name
 
 		for _, v := range validGoarches {
@@ -163,6 +163,5 @@ func ReadbleSize(b int64) string {
 		div *= unit
 		exp++
 	}
-	return fmt.Sprintf("%.1f %cB",
-		float64(b)/float64(div), "kMGTPE"[exp])
+	return fmt.Sprintf("%.1f %cB", float64(b)/float64(div), "kMGTPE"[exp])
 }

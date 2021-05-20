@@ -60,8 +60,8 @@ func ParseRepository(repo string) Repository {
 	return r
 }
 
-// ForEachRelease iterates over every release.
-func (repo Repository) ForEachRelease(f func(release Release)) {
+// ForEachAsset iterates over every asset in a release.
+func (repo Repository) ForEachAsset(f func(release Release)) {
 	repo.Releases.ForEach(func(key, value gjson.Result) bool {
 		release := Release{
 			Name:          value.Get("name").String(),

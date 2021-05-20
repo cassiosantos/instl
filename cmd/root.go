@@ -52,10 +52,12 @@ You can also provide these commands to your users to make your GitHub project ea
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
+		// Get GitHub username and repository from args.
 		repoArg := args[0]
 		repoArgParts := strings.Split(repoArg, "/")
 		repoName := repoArgParts[len(repoArgParts)-2] + "/" + repoArgParts[len(repoArgParts)-1]
 
+		// Print instl header.
 		introText, _ := pterm.DefaultBigText.WithLetters(pterm.NewLettersFromStringWithStyle("  INSTL", pterm.NewStyle(pterm.FgMagenta))).Srender()
 		pterm.Println()
 		pterm.Println(strings.TrimRight(introText, "\n"))
@@ -66,11 +68,12 @@ You can also provide these commands to your users to make your GitHub project ea
 		pterm.DefaultHeader.Printf("Running installer for github.com/%s", repoName)
 		pterm.Println()
 
+		// Request latest GitHub release.
 		var repo internal.Repository
 		internal.MakeSpinner("Getting asset metadata from latest release...", func() string {
 			repo = internal.ParseRepository(repoArg)
 			var releasesCount int
-			repo.ForEachRelease(func(release internal.Release) {
+			repo.ForEachAsset(func(release internal.Release) {
 				releasesCount++
 			})
 
