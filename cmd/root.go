@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"runtime"
 	"strings"
@@ -51,10 +52,13 @@ You can also provide these commands to your users to make your GitHub project ea
 
 		return nil
 	},
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		// Get GitHub username and repository from args.
 		repoArg := args[0]
 		repoArgParts := strings.Split(repoArg, "/")
+		if len(repoArgParts) != 2 {
+			return fmt.Errorf("%s is not a valid GitHub repository", repoArg)
+		}
 		repoName := repoArgParts[len(repoArgParts)-2] + "/" + repoArgParts[len(repoArgParts)-1]
 
 		// Print instl header.
@@ -117,6 +121,8 @@ You can also provide these commands to your users to make your GitHub project ea
 
 		// Success message.
 		pterm.Success.Printfln("%s was installed successfully!\nYou might have to restart your terminal session to use %s.", repo.Name, repo.Name)
+
+		return nil
 	},
 }
 
