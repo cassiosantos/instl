@@ -10,7 +10,7 @@ import (
 )
 
 func GetInstallPath(username, programName string) string {
-	basePath, _ := os.LookupEnv("Programfiles")
+	basePath, _ := os.UserHomeDir()
 	basePath += pterm.Sprintf(`/instl/%s/%s/`, username, programName)
 	basePath = filepath.Clean(basePath)
 	os.MkdirAll(basePath, 0755)
@@ -22,20 +22,19 @@ func GetInstallPath(username, programName string) string {
 func AddToPath(path, filename string) {
 	pterm.Debug.Printfln("Adding %s to path", path)
 
-	sysPath, _ := os.LookupEnv("PATH")
-	if strings.Contains(sysPath, path) {
-		pterm.Debug.Printfln("Path %s is already in the system path", path)
-
-		return
-	}
-
-	k, err := registry.OpenKey(registry.LOCAL_MACHINE, `System\CurrentControlSet\Control\Session Manager\Environment`, registry.QUERY_VALUE|registry.SET_VALUE)
+	k, err := registry.OpenKey(registry.CURRENT_USER, `Environment`, registry.QUERY_VALUE|registry.SET_VALUE)
 	if err != nil {
 		panic(err)
 	}
 	defer k.Close()
 
 	oldPath, _, _ := k.GetStringValue("Path")
+
+	if strings.Contains(oldPath, path) {
+		pterm.Debug.Printfln("Path %s is already in the system path", path)
+
+		return
+	}
 
 	err = k.SetStringValue("Path", oldPath+";"+path)
 	if err != nil {
