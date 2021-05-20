@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"log"
 	"os"
 	"path/filepath"
 
@@ -20,6 +19,6 @@ func GetInstallPath(username, programName string) string {
 func AddToPath(path, filename string) {
 	err := os.Symlink(path+"/"+filename, "/usr/local/bin/"+filepath.Base(path))
 	if err != nil {
-		log.Fatal(err)
+		pterm.Debug.Println("Symlink already exists. This is not a problem, the old one will work too.")
 	}
 }
