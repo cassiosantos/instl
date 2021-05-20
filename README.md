@@ -3,33 +3,33 @@
 
 <p align="center">
 
-<a href="https://github.com/instl-sh/instl/releases">
+<a style="text-decoration: none" href="https://github.com/instl-sh/instl/releases">
 <img src="https://img.shields.io/github/v/release/instl-sh/instl?style=flat-square" alt="Latest Release">
 </a>
 &nbsp;
-<a href="https://github.com/instl-sh/instl/releases">
+<a style="text-decoration: none" href="https://github.com/instl-sh/instl/releases">
 <img src="https://img.shields.io/github/downloads/instl-sh/instl/total.svg?style=flat-square" alt="Downloads">
 </a>
 &nbsp;
-<a href="https://github.com/instl-sh/instl/stargazers">
+<a style="text-decoration: none" href="https://github.com/instl-sh/instl/stargazers">
 <img src="https://img.shields.io/github/stars/instl-sh/instl.svg?style=flat-square" alt="Stars">
 </a>
 &nbsp;
-<a href="https://github.com/instl-sh/instl/fork">
+<a style="text-decoration: none" href="https://github.com/instl-sh/instl/fork">
 <img src="https://img.shields.io/github/forks/instl-sh/instl.svg?style=flat-square" alt="Forks">
 </a>
 &nbsp;
-<a href="https://github.com/instl-sh/instl/issues">
+<a style="text-decoration: none" href="https://github.com/instl-sh/instl/issues">
 <img src="https://img.shields.io/github/issues/instl-sh/instl.svg?style=flat-square" alt="Issues">
 </a>
 &nbsp;
-<a href="https://opensource.org/licenses/MIT">
+<a style="text-decoration: none" href="https://opensource.org/licenses/MIT">
 <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT">
 </a>
 
 <br/>
 
-<a href="https://github.com/instl-sh/instl/releases">
+<a style="text-decoration: none" href="https://github.com/instl-sh/instl/releases">
 <img src="https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-informational?style=for-the-badge" alt="Downloads">
 </a>
 
