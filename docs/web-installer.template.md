@@ -43,7 +43,7 @@ iwr -useb instl.sh/:username/:reponame/windows | iex
 This command will download and execute the web installer script for macOS.
 
 ```bash
-/bin/bash -c "$(curl -fsSL instl.sh/:username/:reponame/macos)"
+curl -fsSL instl.sh/:username/:reponame/macos | bash
 ```
 
 ### Linux
@@ -51,5 +51,5 @@ This command will download and execute the web installer script for macOS.
 This command will download and execute the web installer script for linux.
 
 ```bash
-curl -fsSL instl.sh/:username/:reponame/linux | sudo bash
+curl -fsSL instl.sh/:username/:reponame/linux | bash
 ```
