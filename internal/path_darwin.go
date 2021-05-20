@@ -7,6 +7,7 @@ import (
 	"github.com/pterm/pterm"
 )
 
+// GetInstallPath returns the path, where instl will install the project to.
 func GetInstallPath(username, programName string) string {
 	basePath := pterm.Sprintf("/usr/local/lib/instl/%s/%s", username, programName)
 	basePath = filepath.Clean(basePath)
