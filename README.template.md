@@ -6,23 +6,23 @@
 <a href="https://github.com/{{ .ProjectPath }}/releases">
 <img src="https://img.shields.io/github/v/release/{{ .ProjectPath }}?style=flat-square" alt="Latest Release">
 </a>
-
+&nbsp;
 <a href="https://github.com/{{ .ProjectPath }}/releases">
 <img src="https://img.shields.io/github/downloads/{{ .ProjectPath }}/total.svg?style=flat-square" alt="Downloads">
 </a>
-
+&nbsp;
 <a href="https://github.com/{{ .ProjectPath }}/stargazers">
 <img src="https://img.shields.io/github/stars/{{ .ProjectPath }}.svg?style=flat-square" alt="Stars">
 </a>
-
+&nbsp;
 <a href="https://github.com/{{ .ProjectPath }}/fork">
 <img src="https://img.shields.io/github/forks/{{ .ProjectPath }}.svg?style=flat-square" alt="Forks">
 </a>
-
+&nbsp;
 <a href="https://github.com/{{ .ProjectPath }}/issues">
 <img src="https://img.shields.io/github/issues/{{ .ProjectPath }}.svg?style=flat-square" alt="Issues">
 </a>
-
+&nbsp;
 <a href="https://opensource.org/licenses/MIT">
 <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT">
 </a>
