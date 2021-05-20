@@ -55,6 +55,10 @@ You can also provide these commands to your users to make your GitHub project ea
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// Get GitHub username and repository from args.
 		repoArg := args[0]
+
+		repoArg = strings.TrimPrefix(repoArg, "https://github.com/")
+		repoArg = strings.TrimPrefix(repoArg, "github.com/")
+
 		repoArgParts := strings.Split(repoArg, "/")
 		if len(repoArgParts) != 2 {
 			return fmt.Errorf("%s is not a valid GitHub repository", repoArg)
@@ -74,7 +78,7 @@ You can also provide these commands to your users to make your GitHub project ea
 
 		// Request latest GitHub asset and it's assets.
 		var repo internal.Repository
-		internal.MakeSpinner("Getting asset metadata from latest asset...", func() string {
+		internal.MakeSpinner("Getting asset metadata from latest release...", func() string {
 			repo = internal.ParseRepository(repoArg)
 			var assetCount int
 			repo.ForEachAsset(func(release internal.Asset) {
