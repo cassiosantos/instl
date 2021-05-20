@@ -116,7 +116,7 @@ You can also provide these commands to your users to make your GitHub project ea
 		internal.AddToPath(installDir, repo.Name)
 
 		// Success message.
-		pterm.Success.Printfln("%s was installed successfully!\nYou might have to restart your terminal session to use %s", repo.Name, repo.Name)
+		pterm.Success.Printfln("%s was installed successfully!\nYou might have to restart your terminal session to use %s.", repo.Name, repo.Name)
 	},
 }
 
