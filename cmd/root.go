@@ -72,12 +72,12 @@ You can also provide these commands to your users to make your GitHub project ea
 		var repo internal.Repository
 		internal.MakeSpinner("Getting asset metadata from latest release...", func() string {
 			repo = internal.ParseRepository(repoArg)
-			var releasesCount int
+			var assetCount int
 			repo.ForEachAsset(func(release internal.Release) {
-				releasesCount++
+				assetCount++
 			})
 
-			return pterm.Sprintf("Found %d assets in latest release!", releasesCount)
+			return pterm.Sprintf("Found %d assets in latest release!", assetCount)
 		})
 
 		var release internal.Release
