@@ -37,6 +37,10 @@
 
 </p>
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/31022056/119270816-de43ba80-bbfe-11eb-92af-4b4eaf859399.gif" alt="Instl Demo Animation">
+</p>
+
 ----
 
 <p align="center">
