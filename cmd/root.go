@@ -23,7 +23,8 @@ Additionally, Instl provides a server that generates dynamic scripts that instal
 
 Official docs: https://docs.instl.sh
 
-To use the server you can use the following commands:
+Use these commands, if you don't have instl on your system to install any GitHub project:  
+(If you own a GitHub repo, you can put these commands into your readme, to let users install your tool easily)
   
 **Windows**  
 
@@ -41,8 +42,7 @@ To use the server you can use the following commands:
 
 Read more about the web installer here: https://docs.instl.sh/#/web-installer
   
-These commands can be executed from any system and install the respective GitHub project.  
-You can also provide these commands to your users to make your GitHub project easily installable.`,
+These commands can be executed from any system and install the respective GitHub project.`,
 	Version: "v1.5.0", // <---VERSION---> This comment enables auto-releases on version change!
 	Example: "instl instl-sh/instl",
 	Args: func(cmd *cobra.Command, args []string) error {
