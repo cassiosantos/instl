@@ -45,6 +45,7 @@ instl instl-sh/instl
 |----|-----|
 |`-d, --debug`|enable debug messages|
 |`--raw`|print unstyled raw output (set it if output is written to a file)|
+|`-s, --silent`|only outputs errors|
 
 ## Commands
 |Command|Usage|
