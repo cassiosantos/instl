@@ -1,5 +1,5 @@
 <h1 align="center">instl</h1>
-<p align="center">Instl is an installer that installs GitHub projects on your system with a single command.</p>
+<p align="center">Instl is an installer that can install most GitHub projects on your system with a single command.</p>
 
 <p align="center">
 
@@ -53,7 +53,7 @@
 
 ----
 
-Instl is an installer that installs GitHub projects on your system with a single command.  
+Instl is an installer that can install most GitHub projects on your system with a single command.  
 Additionally, Instl provides a server that generates dynamic scripts that install a GitHub project.  
 
 Official docs: https://docs.instl.sh
