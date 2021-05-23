@@ -17,15 +17,15 @@ To use the server you can use the following commands:
   
 **Windows**  
 
-    iwr -useb instl.sh/username/reponame/windows | iex  
+    iwr instl.sh/username/reponame/windows | iex  
   
 **macOS**  
 
-    curl -fsSL instl.sh/username/reponame/macos | bash   
+    curl -sSL instl.sh/username/reponame/macos | sudo bash   
   
 **Linux**  
 
-    curl -fsSL instl.sh/username/reponame/linux | bash  
+    curl -sSL instl.sh/username/reponame/linux | sudo bash  
   
 (Replace username and reponame with the GitHub project you want to install)  
 
@@ -67,4 +67,4 @@ Simply type instl help [path to command] for full details.
 
 
 ---
-> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 21 May 2021**
+> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 23 May 2021**
