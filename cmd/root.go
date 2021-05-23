@@ -7,6 +7,7 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/atomicgo/isadmin"
 	"github.com/mholt/archiver/v3"
 	"github.com/pterm/pcli"
 	"github.com/pterm/pterm"
@@ -17,8 +18,8 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "instl [username/repo]",
-	Short: "Instl is an installer that installs GitHub projects on your system with a single command.",
-	Long: `Instl is an installer that installs GitHub projects on your system with a single command.  
+	Short: "Instl is an installer that can install most GitHub projects on your system with a single command.",
+	Long: `Instl is an installer that can install most GitHub projects on your system with a single command.  
 Additionally, Instl provides a server that generates dynamic scripts that install a GitHub project.  
 
 Official docs: https://docs.instl.sh
@@ -43,7 +44,7 @@ Use these commands, if you don't have instl on your system to install any GitHub
 Read more about the web installer here: https://docs.instl.sh/#/web-installer
   
 These commands can be executed from any system and install the respective GitHub project.`,
-	Version: "v1.5.0", // <---VERSION---> This comment enables auto-releases on version change!
+	Version: "v1.5.1", // <---VERSION---> This comment enables auto-releases on version change!
 	Example: "instl instl-sh/instl",
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
@@ -53,7 +54,7 @@ These commands can be executed from any system and install the respective GitHub
 		return nil
 	},
 	PreRunE: func(cmd *cobra.Command, args []string) error {
-		if runtime.GOOS != "windows" {
+		if runtime.GOOS != "windows" && !isadmin.Check() {
 			repoArg := args[0]
 
 			repoArg = strings.TrimPrefix(repoArg, "https://github.com/")
