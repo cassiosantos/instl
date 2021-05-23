@@ -85,15 +85,15 @@ Run the following command in a terminal and you're ready to go!
 
 **Windows**
 ```powershell
-iwr -useb instl.sh/instl-sh/instl/windows | iex
+iwr instl.sh/instl-sh/instl/windows | iex
 ```
 
 **macOS**
 ```bash
-curl -fsSL instl.sh/instl-sh/instl/macos | bash
+curl -sSL instl.sh/instl-sh/instl/macos | sudo bash
 ```
 
 **Linux**
 ```bash
-curl -fsSL instl.sh/instl-sh/instl/linux | bash
+curl -sSL instl.sh/instl-sh/instl/linux | sudo bash
 ```
