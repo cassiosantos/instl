@@ -1,12 +1,13 @@
 package internal
 
 import (
+	"bufio"
 	"fmt"
 	"net/url"
+	"os"
 	"os/exec"
 	"runtime"
 
-	"github.com/AlecAivazis/survey/v2"
 	"github.com/pterm/pterm"
 )
 
@@ -14,15 +15,16 @@ func CreateIssue(title, body string) {
 	baseURL := "https://github.com/instl-sh/instl/issues/new?title=%s&body=%s"
 	baseURL = fmt.Sprintf(baseURL, escapeURL(title), escapeURL(body))
 	pterm.Debug.Printfln("Issue URL: %s", baseURL)
-	var open bool
-	survey.AskOne(&survey.Confirm{
-		Message: "Do you want to report this to the instl team?",
-		Default: true,
-	}, &open, survey.WithValidator(survey.Required))
 
-	if open {
+	pterm.Info.Printf("Do you want to report this to the instl team? %s ", pterm.Gray("[Y/n]"))
+
+	reader := bufio.NewReader(os.Stdin)
+	char, _, _ := reader.ReadRune()
+
+	if char != 'n' {
 		openbrowser(baseURL)
 	}
+	pterm.Println()
 }
 
 func escapeURL(text string) string {
