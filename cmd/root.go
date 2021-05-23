@@ -67,6 +67,12 @@ You can also provide these commands to your users to make your GitHub project ea
 			return errors.New("permission denied")
 		}
 
+		disableOutput, _ := cmd.PersistentFlags().GetBool("silent")
+
+		if disableOutput {
+			pterm.DisableOutput()
+		}
+
 		return nil
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -169,6 +175,7 @@ func init() {
 	// Fill the empry strings with the shorthand variant (if you like to have one).
 	rootCmd.PersistentFlags().BoolVarP(&pterm.PrintDebugMessages, "debug", "d", false, "enable debug messages")
 	rootCmd.PersistentFlags().BoolVarP(&pterm.RawOutput, "raw", "", false, "print unstyled raw output (set it if output is written to a file)")
+	rootCmd.PersistentFlags().BoolP("silent", "s", false, "only outputs errors")
 
 	// Use https://github.com/pterm/pcli to style the output of cobra.
 	pcli.SetRootCmd(rootCmd)
