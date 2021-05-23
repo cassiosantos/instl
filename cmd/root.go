@@ -27,15 +27,15 @@ To use the server you can use the following commands:
   
 **Windows**  
 
-    iwr -useb instl.sh/username/reponame/windows | iex  
+    iwr instl.sh/username/reponame/windows | iex  
   
 **macOS**  
 
-    curl -fsSL instl.sh/username/reponame/macos | bash   
+    curl -sSL instl.sh/username/reponame/macos | sudo bash   
   
 **Linux**  
 
-    curl -fsSL instl.sh/username/reponame/linux | bash  
+    curl -sSL instl.sh/username/reponame/linux | sudo bash  
   
 (Replace username and reponame with the GitHub project you want to install)  
 
@@ -48,6 +48,23 @@ You can also provide these commands to your users to make your GitHub project ea
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
 			return errors.New("you must provide a GitHub repo to install\nExample: instl user/repo")
+		}
+
+		return nil
+	},
+	PreRunE: func(cmd *cobra.Command, args []string) error {
+		if runtime.GOOS != "windows" {
+			repoArg := args[0]
+
+			repoArg = strings.TrimPrefix(repoArg, "https://github.com/")
+			repoArg = strings.TrimPrefix(repoArg, "github.com/")
+			repoArgParts := strings.Split(repoArg, "/")
+
+			pterm.Info.Printfln("Instl needs administrative permissions to write to %s and %s.\n"+
+				"If you have installed instl, you can use: "+pterm.Green("sudo instl %s")+"\n"+
+				"If you used the web installer, you can use "+pterm.Green("curl -fsSL instl.sh/%s/%s | sudo bash"), pterm.Magenta("/usr/local/lib"), pterm.Magenta("/usr/local/bin"),
+				strings.Join(repoArgParts, "/"), strings.Join(repoArgParts, "/"), runtime.GOOS)
+			return errors.New("permission denied")
 		}
 
 		return nil
