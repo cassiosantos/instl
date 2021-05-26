@@ -33,7 +33,7 @@ func FindBinary(path string) (binaryPath, binaryName string, err error) {
 
 	blacklist := []string{"LICENSE", "LICENCE"}
 
-	filepath.Walk(path, func(currentPath string, info fs.FileInfo, err error) error {
+	err = filepath.Walk(path, func(currentPath string, info fs.FileInfo, err error) error {
 		if info.IsDir() {
 			return nil
 		}
@@ -59,6 +59,9 @@ func FindBinary(path string) (binaryPath, binaryName string, err error) {
 
 		return nil
 	})
+	if err != nil {
+		return "", "", err
+	}
 
 	if runtime.GOOS == "windows" {
 		if len(dotExeFiles) == 1 {

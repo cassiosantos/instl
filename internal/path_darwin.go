@@ -26,7 +26,7 @@ func AddToPath(path, filename string) {
 
 	pterm.Debug.Printfln("Path: %s, Binary: %s", path, binaryName)
 
-	err = os.Symlink(path+"/"+binaryName, "/usr/local/bin/"+binaryName)
+	err = os.Symlink(path+"/"+binaryName, "/usr/local/bin/"+Repo.Name)
 	if err != nil {
 		pterm.Debug.Println("Symlink already exists. This is not a problem, the old one will work too.")
 	}

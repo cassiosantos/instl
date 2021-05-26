@@ -154,6 +154,7 @@ Instl will search the release for a binary and install it. Instl will also searc
 		// Making installation ready.
 		installPath := internal.GetInstallPath(internal.Repo.User, internal.Repo.Name) + "/" + asset.Name
 		installDir := internal.GetInstallPath(internal.Repo.User, internal.Repo.Name)
+		pterm.Debug.Printfln("InstallPath: %s\nInstallDir: %s", installPath, installDir)
 		pterm.Debug.PrintOnError(os.RemoveAll(installDir))
 		pterm.Warning.PrintOnError(os.MkdirAll(installDir, 0755))
 
@@ -162,9 +163,14 @@ Instl will search the release for a binary and install it. Instl will also searc
 		pterm.Success.Printf("Downloaded %s\n", asset.Name)
 
 		// Installing asset.
-		pterm.Fatal.PrintOnError(archiver.Unarchive(installPath, installDir))
-		pterm.Warning.PrintOnError(os.Remove(installPath))
-		internal.AddToPath(installDir, internal.Repo.Name)
+		err = archiver.Unarchive(installPath, installDir)
+		if err != nil {
+			pterm.Debug.Println("Could not unarchive asset.\nTrying to install it directly.")
+			internal.AddToPath(installDir, internal.Repo.Name)
+		} else {
+			pterm.Warning.PrintOnError(os.Remove(installPath))
+			internal.AddToPath(installDir, internal.Repo.Name)
+		}
 
 		// Success message.
 		pterm.Success.Printfln("%s was installed successfully!\nYou might have to restart your terminal session to use %s.", internal.Repo.Name, internal.Repo.Name)
