@@ -58,6 +58,8 @@ Additionally, Instl provides a server that generates dynamic scripts that instal
 
 Official docs: https://docs.instl.sh
 
+## Web Installer
+
 Use these commands, if you don't have instl on your system to install any GitHub project:  
 (If you own a GitHub repo, you can put these commands into your readme, to let users install your tool easily)
   
@@ -77,7 +79,12 @@ Use these commands, if you don't have instl on your system to install any GitHub
 
 Read more about the web installer here: https://docs.instl.sh/#/web-installer
   
-These commands can be executed from any system and install the respective GitHub project.
+These commands can be executed from any system and install the respective GitHub project.  
+
+## Installable Projects
+
+Instl can install every public GitHub project, that has releases which contain a single binary.  
+Instl will search the release for a binary and install it. Instl will also search archives.
 
 ## Installation
 
