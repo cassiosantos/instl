@@ -12,6 +12,7 @@ var blacklistRegexes = []string{
 	`\.sum$`,
 	`\.md5$`,
 	`\.txt$`,
+	`\.asc`,
 }
 
 var validGoarches = []string{
