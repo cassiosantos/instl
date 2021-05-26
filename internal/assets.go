@@ -61,7 +61,7 @@ var validGooses = []string{
 }
 
 // DetectRightAsset tries to detect the right asset for the current machine.
-func DetectRightAsset(repo Repository) Asset {
+func DetectRightAsset(repo Repository) (Asset, error) {
 	goos := runtime.GOOS
 
 	var (
@@ -99,14 +99,23 @@ func DetectRightAsset(repo Repository) Asset {
 
 	switch goos {
 	case "windows":
-		return findBestRelease(analyzeMultiReleases(&windowsAssets))
+		r := findBestRelease(analyzeMultiReleases(&windowsAssets))
+		if r.Name != "" {
+			return r, nil
+		}
 	case "linux":
-		return findBestRelease(analyzeMultiReleases(&linuxAssets))
+		r := findBestRelease(analyzeMultiReleases(&linuxAssets))
+		if r.Name != "" {
+			return r, nil
+		}
 	case "darwin":
-		return findBestRelease(analyzeMultiReleases(&darwinAssets))
+		r := findBestRelease(analyzeMultiReleases(&darwinAssets))
+		if r.Name != "" {
+			return r, nil
+		}
 	}
 
-	return Asset{}
+	return Asset{}, ErrNoAssetFound
 }
 
 func generateMultiRegex(parts ...string) *regexp.Regexp {

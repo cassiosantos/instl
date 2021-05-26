@@ -129,7 +129,10 @@ Instl will search the release for a binary and install it. Instl will also searc
 		var asset internal.Asset
 		err = internal.MakeSpinner("Detecting right asset for machine...", func() (string, error) {
 			pterm.Debug.Println("Your system:", runtime.GOOS, runtime.GOARCH)
-			asset = internal.DetectRightAsset(internal.Repo)
+			asset, err = internal.DetectRightAsset(internal.Repo)
+			if err != nil {
+				return "", err
+			}
 			return pterm.Sprintf("Found an asset which seems to fit to your system:"), nil
 		})
 		if err != nil {
