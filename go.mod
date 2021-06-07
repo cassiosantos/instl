@@ -1,4 +1,4 @@
-module github.com/instl-sh/instl
+module github.com/installer/instl
 
 go 1.16
 

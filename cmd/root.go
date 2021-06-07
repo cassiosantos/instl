@@ -13,7 +13,7 @@ import (
 	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
 
-	"github.com/instl-sh/instl/internal"
+	"github.com/installer/instl/internal"
 )
 
 var rootCmd = &cobra.Command{
@@ -52,7 +52,7 @@ These commands can be executed from any system and install the respective GitHub
 Instl can install every public GitHub project, that has releases which contain a single binary.  
 Instl will search the release for a binary and install it. Instl will also search archives.`,
 	Version: "v1.7.0", // <---VERSION---> This comment enables auto-releases on version change!
-	Example: "instl instl-sh/instl",
+	Example: "instl installer/instl",
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
 			return errors.New("you must provide a GitHub repo to install\nExample: instl user/repo")

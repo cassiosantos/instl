@@ -1,6 +1,6 @@
 package main
 
-import "github.com/instl-sh/instl/cmd"
+import "github.com/installer/instl/cmd"
 
 func main() {
 	cmd.Execute()

@@ -12,7 +12,7 @@ import (
 )
 
 func CreateIssue(title, body string) {
-	baseURL := "https://github.com/instl-sh/instl/issues/new?title=%s&body=%s"
+	baseURL := "https://github.com/installer/instl/issues/new?title=%s&body=%s"
 	baseURL = fmt.Sprintf(baseURL, escapeURL(title), escapeURL(body))
 	pterm.Debug.Printfln("Issue URL: %s", baseURL)
 
