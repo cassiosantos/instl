@@ -3,24 +3,24 @@
 
 <p align="center">
 
-<a style="text-decoration: none" href="https://github.com/instl-sh/instl/releases">
-<img src="https://img.shields.io/github/v/release/instl-sh/instl?style=flat-square" alt="Latest Release">
+<a style="text-decoration: none" href="https://github.com/installer/instl/releases">
+<img src="https://img.shields.io/github/v/release/installer/instl?style=flat-square" alt="Latest Release">
 </a>
 
-<a style="text-decoration: none" href="https://github.com/instl-sh/instl/releases">
-<img src="https://img.shields.io/github/downloads/instl-sh/instl/total.svg?style=flat-square" alt="Downloads">
+<a style="text-decoration: none" href="https://github.com/installer/instl/releases">
+<img src="https://img.shields.io/github/downloads/installer/instl/total.svg?style=flat-square" alt="Downloads">
 </a>
 
-<a style="text-decoration: none" href="https://github.com/instl-sh/instl/stargazers">
-<img src="https://img.shields.io/github/stars/instl-sh/instl.svg?style=flat-square" alt="Stars">
+<a style="text-decoration: none" href="https://github.com/installer/instl/stargazers">
+<img src="https://img.shields.io/github/stars/installer/instl.svg?style=flat-square" alt="Stars">
 </a>
 
-<a style="text-decoration: none" href="https://github.com/instl-sh/instl/fork">
-<img src="https://img.shields.io/github/forks/instl-sh/instl.svg?style=flat-square" alt="Forks">
+<a style="text-decoration: none" href="https://github.com/installer/instl/fork">
+<img src="https://img.shields.io/github/forks/installer/instl.svg?style=flat-square" alt="Forks">
 </a>
 
-<a style="text-decoration: none" href="https://github.com/instl-sh/instl/issues">
-<img src="https://img.shields.io/github/issues/instl-sh/instl.svg?style=flat-square" alt="Issues">
+<a style="text-decoration: none" href="https://github.com/installer/instl/issues">
+<img src="https://img.shields.io/github/issues/installer/instl.svg?style=flat-square" alt="Issues">
 </a>
 
 <a style="text-decoration: none" href="https://opensource.org/licenses/MIT">
@@ -29,7 +29,7 @@
 
 <br/>
 
-<a style="text-decoration: none" href="https://github.com/instl-sh/instl/releases">
+<a style="text-decoration: none" href="https://github.com/installer/instl/releases">
 <img src="https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-informational?style=for-the-badge" alt="Downloads">
 </a>
 
@@ -44,11 +44,11 @@
 ----
 
 <p align="center">
-<strong><a href="https://instl-sh.github.io/instl/#/installation">Installation</a></strong>
+<strong><a href="https://installer.github.io/instl/#/installation">Installation</a></strong>
 |
-<strong><a href="https://instl-sh.github.io/instl/#/docs">Documentation</a></strong>
+<strong><a href="https://installer.github.io/instl/#/docs">Documentation</a></strong>
 |
-<strong><a href="https://instl-sh.github.io/instl/#/CONTRIBUTING">Contributing</a></strong>
+<strong><a href="https://installer.github.io/instl/#/CONTRIBUTING">Contributing</a></strong>
 </p>
 
 ----
@@ -92,15 +92,15 @@ Run the following command in a terminal and you're ready to go!
 
 **Windows**
 ```powershell
-iwr instl.sh/instl-sh/instl/windows | iex
+iwr instl.sh/installer/instl/windows | iex
 ```
 
 **macOS**
 ```bash
-curl -sSL instl.sh/instl-sh/instl/macos | sudo bash
+curl -sSL instl.sh/installer/instl/macos | sudo bash
 ```
 
 **Linux**
 ```bash
-curl -sSL instl.sh/instl-sh/instl/linux | sudo bash
+curl -sSL instl.sh/installer/instl/linux | sudo bash
 ```

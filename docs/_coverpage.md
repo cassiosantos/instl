@@ -4,4 +4,4 @@
 
 [Installation](installation.md)
 [Docs](docs.md)
-[GitHub](https://github.com/instl-sh/instl)
+[GitHub](https://github.com/installer/instl)
