@@ -11,7 +11,7 @@
 ### Windows Command
 
 ```powershell
-iwr instl.sh/instl-sh/instl/windows | iex
+iwr instl.sh/installer/instl/windows | iex
 ```
 
 #### ** Linux **
@@ -19,7 +19,7 @@ iwr instl.sh/instl-sh/instl/windows | iex
 ### Linux Command
 
 ```bash
-curl -sSL instl.sh/instl-sh/instl/linux | sudo bash
+curl -sSL instl.sh/installer/instl/linux | sudo bash
 ```
 
 #### ** macOS **
@@ -27,7 +27,7 @@ curl -sSL instl.sh/instl-sh/instl/linux | sudo bash
 ### macOS Command
 
 ```bash
-curl -sSL instl.sh/instl-sh/instl/macos | sudo bash
+curl -sSL instl.sh/installer/instl/macos | sudo bash
 ```
 
 #### ** Compile from source **
@@ -41,7 +41,7 @@ Compiling instl from source has the benefit that the build command is the same o
 It is not recommended to install Go only for the installation of instl.
 
 ```command
-go install github.com/instl-sh/instl@latest
+go install github.com/installer/instl@latest
 ```
 
 <!-- tabs:end -->

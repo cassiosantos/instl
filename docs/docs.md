@@ -44,7 +44,7 @@ Instl will search the release for a binary and install it. Instl will also searc
 ## Examples
 
 ```bash
-instl instl-sh/instl
+instl installer/instl
 ```
 
 ## Flags
@@ -75,4 +75,4 @@ Simply type instl help [path to command] for full details.
 
 
 ---
-> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 01 June 2021**
+> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 07 June 2021**
