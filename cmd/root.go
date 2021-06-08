@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"os/signal"
 	"runtime"
 	"strings"
 
@@ -182,9 +183,23 @@ Instl will search the release for a binary and install it. Instl will also searc
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
+	// Fetch user interrupt
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+	go func() {
+		<-c
+		pterm.Warning.Println("user interrupt")
+		pcli.CheckForUpdates()
+		os.Exit(0)
+	}()
+
+	// Execute cobra
 	if err := rootCmd.Execute(); err != nil {
+		pcli.CheckForUpdates()
 		os.Exit(1)
 	}
+
+	pcli.CheckForUpdates()
 }
 
 func init() {
@@ -195,6 +210,7 @@ func init() {
 	rootCmd.PersistentFlags().BoolP("silent", "s", false, "only outputs errors")
 
 	// Use https://github.com/pterm/pcli to style the output of cobra.
+	pcli.SetRepo("installer/instl")
 	pcli.SetRootCmd(rootCmd)
 	pcli.Setup()
 
