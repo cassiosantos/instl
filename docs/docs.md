@@ -39,7 +39,7 @@ These commands can be executed from any system and install the respective GitHub
 ## Installable Projects
 
 Instl can install every public GitHub project, that has releases which contain a single binary.  
-Instl will search the release for a binary and install it. Instl will also search archives.
+It will search the release for a binary and install it. Instl will also search inside archives.
 ```
 ## Examples
 
