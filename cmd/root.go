@@ -103,7 +103,10 @@ It will search the release for a binary and install it. Instl will also search i
 		pterm.Println(strings.TrimRight(introText, "\n"))
 		pterm.Printf(pterm.Cyan("                > https://instl.sh\n"))
 		pterm.Printf(pterm.Cyan("                       %s\n\n"), cmd.Version)
-		pterm.Info.Printf("instl.sh is an automated installer for GitHub projects.\nWe do not own https://github.com/%s.\n", pterm.Magenta(repoName))
+		pterm.Info.Printfln("instl.sh is an automated installer for GitHub projects.")
+		if repoArgParts[0] != "installer" {
+			pterm.Info.Printfln("We do not own https://github.com/%s.", pterm.Magenta(repoName))
+		}
 		pterm.Println()
 		pterm.DefaultHeader.Printf("Running installer for github.com/%s", repoName)
 		pterm.Println()
