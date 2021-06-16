@@ -75,4 +75,4 @@ Simply type instl help [path to command] for full details.
 
 
 ---
-> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 08 June 2021**
+> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 16 June 2021**
