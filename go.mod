@@ -8,6 +8,6 @@ require (
 	github.com/pterm/pcli v0.4.3
 	github.com/pterm/pterm v0.12.27
 	github.com/spf13/cobra v1.2.1
-	github.com/tidwall/gjson v1.8.0
+	github.com/tidwall/gjson v1.8.1
 	golang.org/x/sys v0.0.0-20210514084401-e8d321eab015
 )
