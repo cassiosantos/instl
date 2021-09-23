@@ -20,6 +20,9 @@ func MakeSpinner(msg string, f func() (string, error)) error {
 		spinner.Stop()
 		return err
 	}
+
+	spinner.RemoveWhenDone = msg == ""
+
 	spinner.Success(resolvedMsg)
 
 	return nil

@@ -102,7 +102,7 @@ It will search the release for a binary and install it. Instl will also search i
 		pterm.Println()
 		pterm.Println(strings.TrimRight(introText, "\n"))
 		pterm.Printf(pterm.Cyan("                > https://instl.sh\n"))
-		pterm.Printf(pterm.Cyan("                       %s\n\n"), cmd.Version)
+		pterm.Printf(pterm.Blue("                       %s\n\n"), cmd.Version)
 		pterm.Info.Printfln("instl.sh is an automated installer for GitHub projects.")
 		if repoArgParts[0] != "installer" {
 			pterm.Info.Printfln("We do not own https://github.com/%s.", pterm.Magenta(repoName))
@@ -112,36 +112,24 @@ It will search the release for a binary and install it. Instl will also search i
 		pterm.Println()
 
 		// Request latest GitHub asset and it's assets.
-		err := internal.MakeSpinner("Getting asset metadata from latest release...", func() (string, error) {
-			repoTmp, err := internal.ParseRepository(repoArg)
-			internal.Repo = repoTmp
-			if err != nil {
-				return "", err
-			}
-			var assetCount int
-			internal.Repo.ForEachAsset(func(release internal.Asset) {
-				assetCount++
-			})
-
-			return pterm.Sprintf("Found %d assets in latest release!", assetCount), nil
+		gettingAssetSpinner, _ := pterm.DefaultSpinner.WithRemoveWhenDone().Start("Getting asset metadata from latest release...")
+		repoTmp, err := internal.ParseRepository(repoArg)
+		internal.Repo = repoTmp
+		pterm.Fatal.PrintOnError(err)
+		var assetCount int
+		internal.Repo.ForEachAsset(func(release internal.Asset) {
+			assetCount++
 		})
-		if err != nil {
-			return err
-		}
+		gettingAssetSpinner.Stop()
+		pterm.Debug.Sprintf("Found %d assets in latest release!", assetCount)
 
 		// Detect right asset for system.
+		detectAssetSpinner, _ := pterm.DefaultSpinner.WithRemoveWhenDone().Start("Detecting right asset for machine...")
 		var asset internal.Asset
-		err = internal.MakeSpinner("Detecting right asset for machine...", func() (string, error) {
-			pterm.Debug.Println("Your system:", runtime.GOOS, runtime.GOARCH)
-			asset, err = internal.DetectRightAsset(internal.Repo)
-			if err != nil {
-				return "", err
-			}
-			return pterm.Sprintf("Found an asset which seems to fit to your system:"), nil
-		})
-		if err != nil {
-			return err
-		}
+		pterm.Debug.Println("Your system:", runtime.GOOS, runtime.GOARCH)
+		asset, err = internal.DetectRightAsset(internal.Repo)
+		pterm.Fatal.PrintOnError(err)
+		detectAssetSpinner.Stop()
 
 		// Print asset stats.
 		assetData := pterm.TableData{
@@ -164,7 +152,7 @@ It will search the release for a binary and install it. Instl will also search i
 
 		// Downloading asset.
 		pterm.Fatal.PrintOnError(internal.DownloadFile(installPath, asset.DownloadURL))
-		pterm.Success.Printf("Downloaded %s\n", asset.Name)
+		pterm.Debug.Printf("Downloaded %s\n", asset.Name)
 
 		// Installing asset.
 		err = archiver.Unarchive(installPath, installDir)
@@ -177,7 +165,8 @@ It will search the release for a binary and install it. Instl will also search i
 		}
 
 		// Success message.
-		pterm.Success.Printfln("%s was installed successfully!\nYou might have to restart your terminal session to use %s.", internal.Repo.Name, internal.Repo.Name)
+		pterm.Println() // blank line
+		pterm.Success.Printfln("You might have to restart your terminal session to use %s.", pterm.Magenta(internal.Repo.Name))
 
 		return nil
 	},
