@@ -52,7 +52,7 @@ These commands can be executed from any system and install the respective GitHub
 
 Instl can install every public GitHub project, that has releases which contain a single binary.  
 It will search the release for a binary and install it. Instl will also search inside archives.`,
-	Version: "v1.8.0", // <---VERSION---> This comment enables auto-releases on version change!
+	Version: "v1.8.1", // <---VERSION---> This comment enables auto-releases on version change!
 	Example: "instl installer/instl",
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
