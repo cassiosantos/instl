@@ -221,4 +221,4 @@ Simply type instl help [path to command] for full details.
 
 
 ---
-> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 11 October 2021**
+> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 20 October 2021**
