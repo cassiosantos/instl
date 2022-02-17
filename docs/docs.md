@@ -57,20 +57,19 @@ instl installer/instl
 ## Commands
 |Command|Usage|
 |-------|-----|
-|`instl completion`|generate the autocompletion script for the specified shell|
+|`instl completion`|Generate the autocompletion script for the specified shell|
 |`instl help`|Help about any command|
 # ... completion
 `instl completion`
 
 ## Usage
-> generate the autocompletion script for the specified shell
+> Generate the autocompletion script for the specified shell
 
 instl completion
 
 ## Description
 
 ```
-
 Generate the autocompletion script for instl for the specified shell.
 See each sub-command's help for details on how to use the generated script.
 
@@ -79,38 +78,42 @@ See each sub-command's help for details on how to use the generated script.
 ## Commands
 |Command|Usage|
 |-------|-----|
-|`instl completion bash`|generate the autocompletion script for bash|
-|`instl completion fish`|generate the autocompletion script for fish|
-|`instl completion powershell`|generate the autocompletion script for powershell|
-|`instl completion zsh`|generate the autocompletion script for zsh|
+|`instl completion bash`|Generate the autocompletion script for bash|
+|`instl completion fish`|Generate the autocompletion script for fish|
+|`instl completion powershell`|Generate the autocompletion script for powershell|
+|`instl completion zsh`|Generate the autocompletion script for zsh|
 # ... completion bash
 `instl completion bash`
 
 ## Usage
-> generate the autocompletion script for bash
+> Generate the autocompletion script for bash
 
 instl completion bash
 
 ## Description
 
 ```
-
 Generate the autocompletion script for the bash shell.
 
 This script depends on the 'bash-completion' package.
 If it is not installed already, you can install it via your OS's package manager.
 
 To load completions in your current shell session:
-$ source <(instl completion bash)
+
+	source <(instl completion bash)
 
 To load completions for every new session, execute once:
-Linux:
-  $ instl completion bash > /etc/bash_completion.d/instl
-MacOS:
-  $ instl completion bash > /usr/local/etc/bash_completion.d/instl
+
+#### Linux:
+
+	instl completion bash > /etc/bash_completion.d/instl
+
+#### macOS:
+
+	instl completion bash > /usr/local/etc/bash_completion.d/instl
 
 You will need to start a new shell for this setup to take effect.
-  
+
 ```
 
 ## Flags
@@ -121,21 +124,22 @@ You will need to start a new shell for this setup to take effect.
 `instl completion fish`
 
 ## Usage
-> generate the autocompletion script for fish
+> Generate the autocompletion script for fish
 
 instl completion fish
 
 ## Description
 
 ```
-
 Generate the autocompletion script for the fish shell.
 
 To load completions in your current shell session:
-$ instl completion fish | source
+
+	instl completion fish | source
 
 To load completions for every new session, execute once:
-$ instl completion fish > ~/.config/fish/completions/instl.fish
+
+	instl completion fish > ~/.config/fish/completions/instl.fish
 
 You will need to start a new shell for this setup to take effect.
 
@@ -149,18 +153,18 @@ You will need to start a new shell for this setup to take effect.
 `instl completion powershell`
 
 ## Usage
-> generate the autocompletion script for powershell
+> Generate the autocompletion script for powershell
 
 instl completion powershell
 
 ## Description
 
 ```
-
 Generate the autocompletion script for powershell.
 
 To load completions in your current shell session:
-PS C:\> instl completion powershell | Out-String | Invoke-Expression
+
+	instl completion powershell | Out-String | Invoke-Expression
 
 To load completions for every new session, add the output of the above command
 to your powershell profile.
@@ -175,26 +179,29 @@ to your powershell profile.
 `instl completion zsh`
 
 ## Usage
-> generate the autocompletion script for zsh
+> Generate the autocompletion script for zsh
 
 instl completion zsh
 
 ## Description
 
 ```
-
 Generate the autocompletion script for the zsh shell.
 
 If shell completion is not already enabled in your environment you will need
 to enable it.  You can execute the following once:
 
-$ echo "autoload -U compinit; compinit" >> ~/.zshrc
+	echo "autoload -U compinit; compinit" >> ~/.zshrc
 
 To load completions for every new session, execute once:
-# Linux:
-$ instl completion zsh > "${fpath[1]}/_instl"
-# macOS:
-$ instl completion zsh > /usr/local/share/zsh/site-functions/_instl
+
+#### Linux:
+
+	instl completion zsh > "${fpath[1]}/_instl"
+
+#### macOS:
+
+	instl completion zsh > /usr/local/share/zsh/site-functions/_instl
 
 You will need to start a new shell for this setup to take effect.
 
@@ -221,4 +228,4 @@ Simply type instl help [path to command] for full details.
 
 
 ---
-> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 03 February 2022**
+> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 17 February 2022**
