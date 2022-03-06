@@ -1,15 +1,14 @@
 package internal
 
 import (
-	"os"
-	"path/filepath"
-
 	"github.com/pterm/pterm"
+	"os"
 )
 
 // GetInstallPath returns the path, where instl will install the project to.
-func GetInstallPath(username, programName string) string {
-	basePath := pterm.Sprintf("/usr/local/lib/instl/%s/%s", username, programName)
+func GetInstallPath(programName string) string {
+	homeDir, _ := os.UserHomeDir()
+	basePath := pterm.Sprintf(homeDir+"/.local/bin/_instl/%s", programName)
 	basePath = filepath.Clean(basePath)
 	os.MkdirAll(basePath, 0755)
 
@@ -18,6 +17,7 @@ func GetInstallPath(username, programName string) string {
 
 // AddToPath adds a value to the global system path environment variable.
 func AddToPath(path, filename string) {
+	homeDir, _ := os.UserHomeDir()
 	path, binaryName, err := FindBinary(path)
 	pterm.Error.WithShowLineNumber(false).PrintOnError(err)
 	if err != nil {
@@ -25,8 +25,9 @@ func AddToPath(path, filename string) {
 	}
 
 	pterm.Debug.Printfln("Path: %s, Binary: %s", path, binaryName)
+	pterm.Fatal.PrintOnError(AppendPathToShellProfileFiles())
 
-	err = os.Symlink(path+"/"+binaryName, "/usr/local/bin/"+Repo.Name)
+	err = os.Symlink(path+"/"+binaryName, homeDir+"/.local/bin/"+Repo.Name)
 	if err != nil {
 		pterm.Debug.Println("Symlink already exists. This is not a problem, the old one will work too.")
 	}

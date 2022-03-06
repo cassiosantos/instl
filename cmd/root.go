@@ -8,7 +8,6 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/atomicgo/isadmin"
 	"github.com/mholt/archiver/v3"
 	"github.com/pterm/pcli"
 	"github.com/pterm/pterm"
@@ -62,20 +61,6 @@ It will search the release for a binary and install it. Instl will also search i
 		return nil
 	},
 	PreRunE: func(cmd *cobra.Command, args []string) error {
-		if runtime.GOOS != "windows" && !isadmin.Check() {
-			repoArg := args[0]
-
-			repoArg = strings.TrimPrefix(repoArg, "https://github.com/")
-			repoArg = strings.TrimPrefix(repoArg, "github.com/")
-			repoArgParts := strings.Split(repoArg, "/")
-
-			pterm.Info.Printfln("Instl needs administrative permissions to write to %s and %s.\n"+
-				"If you have installed instl, you can use: "+pterm.Green("sudo instl %s")+"\n"+
-				"If you used the web installer, you can use "+pterm.Green("curl -fsSL instl.sh/%s/%s | sudo bash"), pterm.Magenta("/usr/local/lib"), pterm.Magenta("/usr/local/bin"),
-				strings.Join(repoArgParts, "/"), strings.Join(repoArgParts, "/"), runtime.GOOS)
-			return errors.New("permission denied")
-		}
-
 		disableOutput, _ := cmd.PersistentFlags().GetBool("silent")
 
 		if disableOutput {
@@ -148,8 +133,8 @@ It will search the release for a binary and install it. Instl will also search i
 		pterm.DefaultBox.Println(assetStats)
 
 		// Making installation ready.
-		installPath := internal.GetInstallPath(internal.Repo.User, internal.Repo.Name) + "/" + asset.Name
-		installDir := internal.GetInstallPath(internal.Repo.User, internal.Repo.Name)
+		installPath := internal.GetInstallPath(internal.Repo.Name) + "/" + asset.Name
+		installDir := internal.GetInstallPath(internal.Repo.Name)
 		pterm.Debug.Printfln("InstallPath: %s\nInstallDir: %s", installPath, installDir)
 		pterm.Debug.PrintOnError(os.RemoveAll(installDir))
 		pterm.Warning.PrintOnError(os.MkdirAll(installDir, 0755))
@@ -165,11 +150,10 @@ It will search the release for a binary and install it. Instl will also search i
 		err = archiver.Unarchive(installPath, installDir)
 		if err != nil {
 			pterm.Debug.Println("Could not unarchive asset.\nTrying to install it directly.")
-			internal.AddToPath(installDir, internal.Repo.Name)
 		} else {
 			pterm.Warning.PrintOnError(os.Remove(installPath))
-			internal.AddToPath(installDir, internal.Repo.Name)
 		}
+		internal.AddToPath(installDir, internal.Repo.Name)
 
 		// Success message.
 		pterm.Println() // blank line

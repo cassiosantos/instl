@@ -10,9 +10,9 @@ import (
 )
 
 // GetInstallPath returns the path, where instl will install the project to.
-func GetInstallPath(username, programName string) string {
+func GetInstallPath(programName string) string {
 	basePath, _ := os.UserHomeDir()
-	basePath += pterm.Sprintf(`/instl/%s/%s/`, username, programName)
+	basePath += pterm.Sprintf(`/instl/%s/`, programName)
 	basePath = filepath.Clean(basePath)
 	pterm.Debug.PrintOnError(os.MkdirAll(basePath, 0755))
 
