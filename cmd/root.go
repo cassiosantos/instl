@@ -115,7 +115,9 @@ It will search the release for a binary and install it. Instl will also search i
 		gettingAssetSpinner, _ := pterm.DefaultSpinner.WithRemoveWhenDone().Start("Getting asset metadata from latest release...")
 		repoTmp, err := internal.ParseRepository(repoArg)
 		internal.Repo = repoTmp
-		pterm.Fatal.PrintOnError(err)
+		if err != nil {
+			return err
+		}
 		var assetCount int
 		internal.Repo.ForEachAsset(func(release internal.Asset) {
 			assetCount++
@@ -128,7 +130,9 @@ It will search the release for a binary and install it. Instl will also search i
 		var asset internal.Asset
 		pterm.Debug.Println("Your system:", runtime.GOOS, runtime.GOARCH)
 		asset, err = internal.DetectRightAsset(internal.Repo)
-		pterm.Fatal.PrintOnError(err)
+		if err != nil {
+			return err
+		}
 		detectAssetSpinner.Stop()
 
 		// Print asset stats.
@@ -151,7 +155,10 @@ It will search the release for a binary and install it. Instl will also search i
 		pterm.Warning.PrintOnError(os.MkdirAll(installDir, 0755))
 
 		// Downloading asset.
-		pterm.Fatal.PrintOnError(internal.DownloadFile(installPath, asset.DownloadURL))
+		err = internal.DownloadFile(installPath, asset.DownloadURL)
+		if err != nil {
+			return err
+		}
 		pterm.Debug.Printf("Downloaded %s\n", asset.Name)
 
 		// Installing asset.
