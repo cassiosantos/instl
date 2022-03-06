@@ -3,9 +3,10 @@ module github.com/installer/instl
 go 1.16
 
 require (
+	github.com/andybalholm/brotli v1.0.4 // indirect
 	github.com/atomicgo/isadmin v1.0.0
 	github.com/mholt/archiver/v3 v3.5.1
-	github.com/pterm/pcli v0.4.3
+	github.com/pterm/pcli v0.4.4
 	github.com/pterm/pterm v0.12.37
 	github.com/spf13/cobra v1.3.0
 	github.com/tidwall/gjson v1.14.0
