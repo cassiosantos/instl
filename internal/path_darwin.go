@@ -3,6 +3,7 @@ package internal
 import (
 	"github.com/pterm/pterm"
 	"os"
+	"path/filepath"
 )
 
 // GetInstallPath returns the path, where instl will install the project to.
