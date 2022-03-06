@@ -35,11 +35,11 @@ Use these commands, if you don't have instl on your system to install any GitHub
   
 **macOS**  
 
-    curl -sSL instl.sh/username/reponame/macos | sudo bash   
+    curl -sSL instl.sh/username/reponame/macos | bash   
   
 **Linux**  
 
-    curl -sSL instl.sh/username/reponame/linux | sudo bash  
+    curl -sSL instl.sh/username/reponame/linux | bash  
   
 (Replace username and reponame with the GitHub project you want to install)  
 
