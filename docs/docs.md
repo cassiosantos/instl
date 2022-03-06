@@ -24,11 +24,11 @@ Use these commands, if you don't have instl on your system to install any GitHub
   
 **macOS**  
 
-    curl -sSL instl.sh/username/reponame/macos | sudo bash   
+    curl -sSL instl.sh/username/reponame/macos | bash   
   
 **Linux**  
 
-    curl -sSL instl.sh/username/reponame/linux | sudo bash  
+    curl -sSL instl.sh/username/reponame/linux | bash  
   
 (Replace username and reponame with the GitHub project you want to install)  
 
@@ -57,8 +57,23 @@ instl installer/instl
 ## Commands
 |Command|Usage|
 |-------|-----|
+|`instl check`|Performs various tests to ensure instl is working correctly on the host machine|
 |`instl completion`|Generate the autocompletion script for the specified shell|
 |`instl help`|Help about any command|
+# ... check
+`instl check`
+
+## Usage
+> Performs various tests to ensure instl is working correctly on the host machine
+
+instl check
+
+## Description
+
+```
+The check command performs various tests to ensure instl is working correctly on the host machine.
+Use the -d (debug) flag to see more detailed output.
+```
 # ... completion
 `instl completion`
 
@@ -228,4 +243,4 @@ Simply type instl help [path to command] for full details.
 
 
 ---
-> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 17 February 2022**
+> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 06 March 2022**

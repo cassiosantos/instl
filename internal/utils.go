@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io/fs"
+	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -84,4 +85,9 @@ func FindBinary(path string) (binaryPath, binaryName string, err error) {
 	pterm.Error.Println("We could not find a binary file inside the release asset.")
 	CreateIssue(fmt.Sprintf("[Binary Detection] `%s/%s`", Repo.User, Repo.Name), fmt.Sprintf("Detected files: \n```go\n%#v\n```\n", detectedFiles))
 	return "", "", errors.New("could not find binary file in asset")
+}
+
+func FileExists(path string) bool {
+	_, err := os.Stat(path)
+	return !os.IsNotExist(err)
 }

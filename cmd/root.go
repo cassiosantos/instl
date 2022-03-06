@@ -8,7 +8,6 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/atomicgo/isadmin"
 	"github.com/mholt/archiver/v3"
 	"github.com/pterm/pcli"
 	"github.com/pterm/pterm"
@@ -36,11 +35,11 @@ Use these commands, if you don't have instl on your system to install any GitHub
   
 **macOS**  
 
-    curl -sSL instl.sh/username/reponame/macos | sudo bash   
+    curl -sSL instl.sh/username/reponame/macos | bash   
   
 **Linux**  
 
-    curl -sSL instl.sh/username/reponame/linux | sudo bash  
+    curl -sSL instl.sh/username/reponame/linux | bash  
   
 (Replace username and reponame with the GitHub project you want to install)  
 
@@ -52,7 +51,7 @@ These commands can be executed from any system and install the respective GitHub
 
 Instl can install every public GitHub project, that has releases which contain a single binary.  
 It will search the release for a binary and install it. Instl will also search inside archives.`,
-	Version: "v1.8.1", // <---VERSION---> This comment enables auto-releases on version change!
+	Version: "v1.9.0", // <---VERSION---> This comment enables auto-releases on version change!
 	Example: "instl installer/instl",
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 1 {
@@ -62,20 +61,6 @@ It will search the release for a binary and install it. Instl will also search i
 		return nil
 	},
 	PreRunE: func(cmd *cobra.Command, args []string) error {
-		if runtime.GOOS != "windows" && !isadmin.Check() {
-			repoArg := args[0]
-
-			repoArg = strings.TrimPrefix(repoArg, "https://github.com/")
-			repoArg = strings.TrimPrefix(repoArg, "github.com/")
-			repoArgParts := strings.Split(repoArg, "/")
-
-			pterm.Info.Printfln("Instl needs administrative permissions to write to %s and %s.\n"+
-				"If you have installed instl, you can use: "+pterm.Green("sudo instl %s")+"\n"+
-				"If you used the web installer, you can use "+pterm.Green("curl -fsSL instl.sh/%s/%s | sudo bash"), pterm.Magenta("/usr/local/lib"), pterm.Magenta("/usr/local/bin"),
-				strings.Join(repoArgParts, "/"), strings.Join(repoArgParts, "/"), runtime.GOOS)
-			return errors.New("permission denied")
-		}
-
 		disableOutput, _ := cmd.PersistentFlags().GetBool("silent")
 
 		if disableOutput {
@@ -115,7 +100,9 @@ It will search the release for a binary and install it. Instl will also search i
 		gettingAssetSpinner, _ := pterm.DefaultSpinner.WithRemoveWhenDone().Start("Getting asset metadata from latest release...")
 		repoTmp, err := internal.ParseRepository(repoArg)
 		internal.Repo = repoTmp
-		pterm.Fatal.PrintOnError(err)
+		if err != nil {
+			return err
+		}
 		var assetCount int
 		internal.Repo.ForEachAsset(func(release internal.Asset) {
 			assetCount++
@@ -128,7 +115,9 @@ It will search the release for a binary and install it. Instl will also search i
 		var asset internal.Asset
 		pterm.Debug.Println("Your system:", runtime.GOOS, runtime.GOARCH)
 		asset, err = internal.DetectRightAsset(internal.Repo)
-		pterm.Fatal.PrintOnError(err)
+		if err != nil {
+			return err
+		}
 		detectAssetSpinner.Stop()
 
 		// Print asset stats.
@@ -144,25 +133,27 @@ It will search the release for a binary and install it. Instl will also search i
 		pterm.DefaultBox.Println(assetStats)
 
 		// Making installation ready.
-		installPath := internal.GetInstallPath(internal.Repo.User, internal.Repo.Name) + "/" + asset.Name
-		installDir := internal.GetInstallPath(internal.Repo.User, internal.Repo.Name)
+		installPath := internal.GetInstallPath(internal.Repo.Name) + "/" + asset.Name
+		installDir := internal.GetInstallPath(internal.Repo.Name)
 		pterm.Debug.Printfln("InstallPath: %s\nInstallDir: %s", installPath, installDir)
 		pterm.Debug.PrintOnError(os.RemoveAll(installDir))
 		pterm.Warning.PrintOnError(os.MkdirAll(installDir, 0755))
 
 		// Downloading asset.
-		pterm.Fatal.PrintOnError(internal.DownloadFile(installPath, asset.DownloadURL))
+		err = internal.DownloadFile(installPath, asset.DownloadURL)
+		if err != nil {
+			return err
+		}
 		pterm.Debug.Printf("Downloaded %s\n", asset.Name)
 
 		// Installing asset.
 		err = archiver.Unarchive(installPath, installDir)
 		if err != nil {
 			pterm.Debug.Println("Could not unarchive asset.\nTrying to install it directly.")
-			internal.AddToPath(installDir, internal.Repo.Name)
 		} else {
 			pterm.Warning.PrintOnError(os.Remove(installPath))
-			internal.AddToPath(installDir, internal.Repo.Name)
 		}
+		internal.AddToPath(installDir, internal.Repo.Name)
 
 		// Success message.
 		pterm.Println() // blank line
