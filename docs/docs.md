@@ -57,8 +57,23 @@ instl installer/instl
 ## Commands
 |Command|Usage|
 |-------|-----|
+|`instl check`|Performs various tests to ensure instl is working correctly on the host machine|
 |`instl completion`|Generate the autocompletion script for the specified shell|
 |`instl help`|Help about any command|
+# ... check
+`instl check`
+
+## Usage
+> Performs various tests to ensure instl is working correctly on the host machine
+
+instl check
+
+## Description
+
+```
+The check command performs various tests to ensure instl is working correctly on the host machine.
+Use the -d (debug) flag to see more detailed output.
+```
 # ... completion
 `instl completion`
 
