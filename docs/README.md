@@ -97,10 +97,10 @@ iwr instl.sh/installer/instl/windows | iex
 
 **macOS**
 ```bash
-curl -sSL instl.sh/installer/instl/macos | sudo bash
+curl -sSL instl.sh/installer/instl/macos | bash
 ```
 
 **Linux**
 ```bash
-curl -sSL instl.sh/installer/instl/linux | sudo bash
+curl -sSL instl.sh/installer/instl/linux | bash
 ```
