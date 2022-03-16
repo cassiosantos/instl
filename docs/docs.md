@@ -243,4 +243,4 @@ Simply type instl help [path to command] for full details.
 
 
 ---
-> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 10 March 2022**
+> **Documentation automatically generated with [PTerm](https://github.com/pterm/cli-template) on 16 March 2022**
