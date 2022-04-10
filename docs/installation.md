@@ -19,7 +19,7 @@ iwr instl.sh/installer/instl/windows | iex
 ### Linux Command
 
 ```bash
-curl -sSL instl.sh/installer/instl/linux | sudo bash
+curl -sSL instl.sh/installer/instl/linux | bash
 ```
 
 #### ** macOS **
@@ -27,7 +27,7 @@ curl -sSL instl.sh/installer/instl/linux | sudo bash
 ### macOS Command
 
 ```bash
-curl -sSL instl.sh/installer/instl/macos | sudo bash
+curl -sSL instl.sh/installer/instl/macos | bash
 ```
 
 #### ** Compile from source **
