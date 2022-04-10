@@ -17,7 +17,6 @@ require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
 	github.com/atomicgo/cursor v0.0.1 // indirect
 	github.com/dsnet/compress v0.0.2-0.20210315054119-f66993602bf5 // indirect
-	github.com/golang/snappy v0.0.3 // indirect
 	github.com/gookit/color v1.4.2 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/klauspost/compress v1.11.4 // indirect

@@ -26,31 +26,50 @@ Official docs: https://docs.instl.sh
 
 ## Web Installer
 
-Use these commands, if you don't have instl on your system to install any GitHub project:  
-(If you own a GitHub repo, you can put these commands into your readme, to let users install your tool easily)
-  
-**Windows**  
+> The web install command can be used by anyone and does not require anything to be installed.
+> Running the web install command will download instl and install the given GitHub project.
+> After that, instl will be removed from the system again.
 
-    iwr instl.sh/username/reponame/windows | iex  
-  
-**macOS**  
+The instl web installer is a single command, which everyone can run, to install a GitHub project.
+This is the basic syntax, which will return an install script from our API server:
 
-    curl -sSL instl.sh/username/reponame/macos | bash   
-  
-**Linux**  
+	                     ┌ The GitHub username of the project
+	                     |          ┌ The GitHub repository name of the project
+	                     |          |         ┌ The platform, see "Valid Platforms"
+	                     |          |         |
+	https://instl.sh/:username/:reponame/:platform
 
-    curl -sSL instl.sh/username/reponame/linux | bash  
-  
-(Replace username and reponame with the GitHub project you want to install)  
+### Valid Platforms
 
-Read more about the web installer here: https://docs.instl.sh/#/web-installer
-  
-These commands can be executed from any system and install the respective GitHub project.  
+| Valid Platforms | Parameter |
+|-----------------|-----------|
+|     Windows     |  windows |
+|      macOS      |  macos  |
+|      Linux      |  linux  |
 
-## Installable Projects
+### Running the web installer command
 
-Instl can install every public GitHub project, that has releases which contain a single binary.  
-It will search the release for a binary and install it. Instl will also search inside archives.`,
+> Different operating systems need different commands to download and run the web installer script.
+
+#### Windows
+
+This command will download and execute the web installer script for windows.
+You have to execute it in a powershell terminal.
+
+	iwr -useb instl.sh/:username/:reponame/windows | iex
+
+#### macOS
+
+This command will download and execute the web installer script for macOS.
+
+	curl -fsSL instl.sh/:username/:reponame/macos | bash
+
+#### Linux
+
+This command will download and execute the web installer script for linux.
+
+	curl -fsSL instl.sh/:username/:reponame/linux | bash
+`,
 	Version: "v1.9.0", // <---VERSION---> This comment enables auto-releases on version change!
 	Example: "instl installer/instl",
 	Args: func(cmd *cobra.Command, args []string) error {
