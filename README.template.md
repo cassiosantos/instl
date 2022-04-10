@@ -65,7 +65,9 @@
 
 ## Installation
 
-Run the following command in a terminal and you're ready to go!
+If you want to install instl directly to your system, to be able to install most GitHub projects with ease, you can use the following command:
+
+```
 
 **Windows**
 ```powershell

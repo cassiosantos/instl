@@ -50,6 +50,7 @@ This is the basic syntax, which will return an install script from our API serve
 ### Running the web installer command
 
 > Different operating systems need different commands to download and run the web installer script.
+> You can include those commands in your GitHub project, to provide a user-friendly installer for your CLI without any setup!
 
 #### Windows
 
