@@ -92,6 +92,7 @@ This is the basic syntax, which will return an install script from our API serve
 ### Running the web installer command
 
 > Different operating systems need different commands to download and run the web installer script.
+> You can include those commands in your GitHub project, to provide a user-friendly installer for your CLI without any setup!
 
 #### Windows
 
@@ -115,7 +116,9 @@ This command will download and execute the web installer script for linux.
 
 ## Installation
 
-Run the following command in a terminal and you're ready to go!
+If you want to install instl directly to your system, to be able to install most GitHub projects with ease, you can use the following command:
+
+```
 
 **Windows**
 ```powershell
