@@ -75,19 +75,19 @@ Official docs: https://docs.instl.sh
 The instl web installer is a single command, which everyone can run, to install a GitHub project.
 This is the basic syntax, which will return an install script from our API server:
 
-	                     ┌ The GitHub username of the project
-	                     |          ┌ The GitHub repository name of the project
-	                     |          |         ┌ The platform, see "Valid Platforms"
-	                     |          |         |
-	https://instl.sh/:username/:reponame/:platform
+                         ┌ The GitHub username of the project
+                         |        ┌ The GitHub repository name of the project
+                         |        |       ┌ The platform, see "Valid Platforms"
+                         |        |       |
+	https://instl.sh/username/reponame/platform
 
 ### Valid Platforms
 
 | Valid Platforms | Parameter |
 |-----------------|-----------|
-|     Windows     |  windows |
-|      macOS      |  macos  |
-|      Linux      |  linux  |
+|     Windows     |  windows  |
+|      macOS      |  macos    |
+|      Linux      |  linux    |
 
 ### Running the web installer command
 
@@ -99,19 +99,19 @@ This is the basic syntax, which will return an install script from our API serve
 This command will download and execute the web installer script for windows.
 You have to execute it in a powershell terminal.
 
-	iwr -useb instl.sh/:username/:reponame/windows | iex
+	iwr -useb instl.sh/username/reponame/windows | iex
 
 #### macOS
 
 This command will download and execute the web installer script for macOS.
 
-	curl -fsSL instl.sh/:username/:reponame/macos | bash
+	curl -fsSL instl.sh/username/reponame/macos | bash
 
 #### Linux
 
 This command will download and execute the web installer script for linux.
 
-	curl -fsSL instl.sh/:username/:reponame/linux | bash
+	curl -fsSL instl.sh/username/reponame/linux | bash
 
 
 ## Installation
