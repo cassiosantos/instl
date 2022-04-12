@@ -118,8 +118,6 @@ This command will download and execute the web installer script for linux.
 
 If you want to install instl directly to your system, to be able to install most GitHub projects with ease, you can use the following command:
 
-```
-
 **Windows**
 ```powershell
 iwr instl.sh/installer/instl/windows | iex
