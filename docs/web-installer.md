@@ -18,11 +18,11 @@ https://instl.sh/:username/:reponame/:platform
 
 ## Valid Platforms
 
-| Valid Platforms | Parameter |
-|-----------------|-----------|
-|     Windows     |  `windows |
-|      macOS      |  `macos`  |
-|      Linux      |  `linux`  |
+| Valid Platforms | Parameter  |
+|-----------------|------------|
+|     Windows     |  `windows` |
+|      macOS      |  `macos`   |
+|      Linux      |  `linux`   |
 
 ## Running the web installer command
 
